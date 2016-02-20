@@ -268,7 +268,7 @@ function geomap_receive(position){
 
 
 function geomap_next_waypoint() {
-    if (waypoint_index+1 < waypoints.length) 
+    if (waypoint_index+1 < waypointsObj.waypoints.length) 
     {
         /* update the list of points */
         play_sound( waypointsObj.waypoints[waypoint_index]["mp3"] );
