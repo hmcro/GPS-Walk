@@ -1,4 +1,5 @@
 const DISTANCE_THRESHOLD = 20; // in meters
+const WAYPOINT_FILE_PATH = "http://hmcro.github.io/GPS-Walk/js/acton.json";
 
 var start_time, waypoint_time;
 var finished = false;
@@ -15,7 +16,7 @@ var waypointsObj;
 $(document).ready(function(){
 
     $.ajax({
-        url: "http://hmcro.github.io/GPS-Walk/js/waypoints.json"
+        url: WAYPOINT_FILE_PATH
     })
     .done(function(data, textStatus, jqXHR){
         waypointsObj = data;
