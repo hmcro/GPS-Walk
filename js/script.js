@@ -22,31 +22,34 @@ $(document).ready(function(){
         waypointsObj = data;
         $("#status .stories").html(waypointsObj.stories.length);
         console.log("json: " + textStatus);
+
+        /* first user event click to start */
+        $(".submit").click(function(){        
+            play_sound("audio/hmcro/1_Welcome.mp3");
+            if (navigator.geolocation) {
+                geomap_init();
+                $('#intro').remove();
+            } else {
+                show_error("Geolocation has been disabled. Please check Settings > Privacy > Location.");
+            }
+
+        });
+
+        $("#intro .submit").prop('disabled', false);
+
+        /* second user event click to refresh */
+        $(document).on("click", "a.refresh", function(){
+            location.reload();
+        });
+
+        /* skipping waypoints user interaction */
+        $(document).on("click", "a.nextwaypoint", function(){
+            geomap_next_waypoint();
+        });
+
     })
     .fail(function(jqXHR, textStatus, errorThrown){
         show_error("The GPS waypoints and audio could not be loaded.");
-    });
-
-    /* first user event click to start */
-    $(".submit").click(function(){        
-        play_sound("audio/hmcro/1_Welcome.mp3");
-        if (navigator.geolocation) {
-            geomap_init();
-            $('#intro').remove();
-        } else {
-            show_error("Geolocation has been disabled. Please check Settings > Privacy > Location.");
-        }
-        
-    });
-
-    /* second user event click to refresh */
-    $(document).on("click", "a.refresh", function(){
-        location.reload();
-    });
-
-    /* skipping waypoints user interaction */
-    $(document).on("click", "a.nextwaypoint", function(){
-        geomap_next_waypoint();
     });
 });
 
@@ -285,7 +288,7 @@ function geomap_next_waypoint() {
     } 
     else 
     {
-        play_sound( waypointsObj.waypoints[++waypoint_index]["mp3"] );
+        play_sound( "audio/hmcro/21_Over.mp3" );
         finished = true;
 
         /* disable the map */

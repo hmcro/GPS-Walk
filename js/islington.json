@@ -22,7 +22,7 @@
 		{"latitude":51.521218, "longitude":-0.092420876, "mp3":"audio/hmcro/18_Ramp.mp3"},
 		{"latitude":51.520964, "longitude":-0.092764199, "mp3":"audio/hmcro/19_Skywalk.mp3"},
 		{"latitude":51.5205, "longitude":-0.09280175, "mp3":"audio/hmcro/20_Level3.mp3"},
-		{"latitude":51.520133, "longitude":-0.093115568, "mp3":"audio/hmcro/21_Over.mp3"}
+		{"latitude":51.520133, "longitude":-0.093115568, "mp3":""}
 	],
 	"stories":[
 		{"latitude":51.533069, "longitude":-0.10176301, "mp3":"audio/adversity/Canal.mp3"},

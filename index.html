@@ -25,7 +25,7 @@
 <body>
 
 	<div id="intro">
-		<img class="logo" src="img/logo_icon.svg" width="80" height="80" alt="HMCRO Logo"/>
+		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
 		<h1>HMCRO</h1>
 		<h2>v0.13.0</h2>
 
@@ -37,7 +37,7 @@
 
 		<form name="hmcro">
 			<input type="number" name="id" placeholder="Citizen ID">
-			<button class="submit" type="submit" form="hmcro" value="Submit">Begin Localisation</button>
+			<button class="submit" type="submit" form="hmcro" value="Submit" disabled="disabled">Begin Localisation</button>
 		</form>
 
 		<p><a class="refresh">Refresh</a></p>
@@ -50,7 +50,7 @@
 		<ul>
 			<li>Duration:<br><span class="time">00:00</span></li>
 			<li>Distance:<br><span class="speed">0m / 2977.2m</span></li>
-			<li>Stories Remaining:<br><span class="stories">0</span></li>
+			<li>Stories:<br><span class="stories">0</span></li>
 			<li><a class="nextwaypoint">next</a></li>
 		</ul>
 		<p class="footer">© HM Citizen Rotation Office</p>
@@ -59,9 +59,9 @@
 	<div id="map"></div>
 
 	<div id="end">
-		<img class="logo" src="img/logo_icon.svg" width="128" height="128" alt="HMCRO Logo"/>
+		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
 		<h1>HMCRO</h1>
-		<p>Thank you. The localisation tour is now over.</p>
+		<h2>Thank you. The localisation tour is now over.</h2>
 		<a class="refresh">Refresh</a>
 	</div>
 

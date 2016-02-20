@@ -4,7 +4,7 @@
 		{"latitude":51.505193, "longitude":-0.25021255, "mp3":"audio/hmcro/3_RegentsCanal.mp3"},
 		{"latitude":51.505387, "longitude":-0.24897873, "mp3":"audio/hmcro/4_Steps.mp3"},
 		{"latitude":51.506602, "longitude":-0.24932206, "mp3":"audio/hmcro/5_GrahamSt.mp3"},
-		{"latitude":51.506632, "longitude":-0.25056660, "mp3":"audio/hmcro/21_Over.mp3"}
+		{"latitude":51.506632, "longitude":-0.25056660, "mp3":""},
 	],
 	"stories":[
 		{"latitude":51.506025, "longitude":-0.25060415, "mp3":"audio/adversity/Hello.mp3"},
