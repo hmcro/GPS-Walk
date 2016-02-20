@@ -1,0 +1,141 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: "Akkurat", helvetica;
+	font-size: .9em;
+	line-height: 1.3em;
+	color: #ffffff;
+	background-color: #f15a24;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 1em;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1em;
+}
+
+h3 {
+	font-size: 1em;
+	line-height: 1em;
+}
+
+a {
+	cursor: pointer;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+img {
+	margin-bottom: 1em;
+}
+
+form * {
+	box-sizing: border-box;
+	display: block;
+	padding: .5em 1em;
+	margin: 1em auto;
+	font-size: 1.5em;
+	line-height: 1em;
+	width: 100%;
+	text-align: center;
+}
+
+button.submit {
+	cursor: pointer;
+	text-transform: uppercase;
+	background-color: #c1491e;
+	color: #ffffff;
+	
+	/*margin: 1em 0;*/
+	border: 0;	
+	
+	letter-spacing: .1em;
+}
+
+a.refresh {
+	display: block;
+	margin: 1em 0;
+}
+
+#intro, #end {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*z-index: 99;*/
+	text-align: center;
+	padding: 3em 1em 0 1em;
+}
+
+#intro h2 {
+	margin-bottom: 2em;
+}
+
+#intro form {
+	margin-top: 3em;
+}
+
+#status {
+	box-sizing: border-box;
+	/*width: 100%;*/
+	position: absolute;
+	top: 0;
+	z-index: 999;
+	display: none;
+}
+
+#status li {
+	background-color: #f15a24;
+	padding: .2em .3em;
+	margin: .2em;
+}
+
+#status li span {
+	font-size: 2em;
+	line-height: 1em;
+}
+
+p.footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	text-align: center;
+	margin: 0 !important;
+	padding: 0;
+	background-color: #000000;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
+
+#end {
+	display: none;
+}
+
+#error {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top:0;
+	background-color: #f15a24;
+	z-index: 9999;
+	text-align: center;
+}
+
+#error h2 {
+	margin: 3em 1em 3em 1em;
+}
