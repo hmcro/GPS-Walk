@@ -1,5 +1,5 @@
 const DISTANCE_THRESHOLD = 20; // in meters
-const WAYPOINT_FILE_PATH = "http://hmcro.github.io/GPS-Walk/js/acton.json";
+const WAYPOINT_FILE_PATH = "http://hmcro.github.io/GPS-Walk/js/islington.json";
 
 var start_time, waypoint_time;
 var finished = false;
