@@ -192,9 +192,9 @@ function geomap_init(){
             "type": "circle",
             "source": "markers",
             "paint": {
-                "circle-radius": 20,
+                "circle-radius": 40,
                 "circle-color": "#f15a24",
-                "circle-opacity": 0.8
+                "circle-opacity": 0.2
             }
         });
 
