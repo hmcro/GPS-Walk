@@ -14,9 +14,26 @@ var waypointsObj;
 
 $(document).ready(function(){
 
-    $.getJSON('js/waypoints.json', function(json, textStatus) {
-        waypointsObj = json;
+    // $.ajax('js/waypoints.json', function(json, textStatus) {
+    //     waypointsObj = json;
+    //     $("#status .stories").html(waypointsObj.stories.length);
+
+    //     console.log("json: " + textStatus);
+    // }).fail(function(){
+
+    // });
+
+    $.ajax({
+        url: "js/waypoints.json"
+    })
+    .done(function(data, textStatus, jqXHR){
+        waypointsObj = data;
         $("#status .stories").html(waypointsObj.stories.length);
+        console.log("json: " + textStatus);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown){
+        console.log(errorThrown);
+        show_error(textStatus);
     });
 
     /* first user event click to start */
@@ -26,7 +43,7 @@ $(document).ready(function(){
             geomap_init();
             $('#intro').remove();
         } else {
-            show_error("There was a location error");
+            show_error("Geolocation has been disabled. Please check Settings > Privacy > Location.");
         }
         
     });
@@ -292,7 +309,13 @@ function geomap_next_waypoint() {
 
 
 function geomap_error(error) {
-    show_error( error.message );
+
+    if (error.code == 2) {
+        //POSITION_UNAVAILABLE
+        show_error( "Your GPS position is unavailable. Please check your Location settings." );
+    } else {
+        show_error( error.message );
+    }
 }
 
 

@@ -43,6 +43,12 @@
 		{"latitude":51.526591, "longitude":-0.094392300, "mp3":"audio/adversity/PublicBaths.mp3"},
 		{"latitude":51.523331, "longitude":-0.093094110, "mp3":"audio/adversity/Rotation.mp3"},
 		{"latitude":51.525357, "longitude":-0.094467402, "mp3":"audio/adversity/SharingHousemates.mp3"},
-		{"latitude":51.524245, "longitude":-0.093727112, "mp3":"audio/adversity/StayInside.mp3"}
+		{"latitude":51.524245, "longitude":-0.093727112, "mp3":"audio/adversity/StayInside.mp3"},
+		{"latitude":51.528544, "longitude":-0.097149611, "mp3":"audio/comfortable/Administrator.mp3"},
+		{"latitude":51.530808, "longitude":-0.097766519, "mp3":"audio/comfortable/Blank.mp3"},
+		{"latitude":51.525420, "longitude":-0.094124079, "mp3":"audio/comfortable/Church.mp3"},
+		{"latitude":51.523988, "longitude":-0.093550086, "mp3":"audio/comfortable/croSetup.mp3"},
+		{"latitude":51.525954, "longitude":-0.094006062, "mp3":"audio/comfortable/DataTrends.mp3"},
+		{"latitude":51.526271, "longitude":-0.094912648, "mp3":"audio/comfortable/DigitalIdentity.mp3"}
 	]
 }
