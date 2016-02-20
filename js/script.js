@@ -14,17 +14,8 @@ var waypointsObj;
 
 $(document).ready(function(){
 
-    // $.ajax('js/waypoints.json', function(json, textStatus) {
-    //     waypointsObj = json;
-    //     $("#status .stories").html(waypointsObj.stories.length);
-
-    //     console.log("json: " + textStatus);
-    // }).fail(function(){
-
-    // });
-
     $.ajax({
-        url: "js/waypoints.json"
+        url: "http://hmcro.github.io/GPS-Walk/js/waypoints.json"
     })
     .done(function(data, textStatus, jqXHR){
         waypointsObj = data;
@@ -32,8 +23,7 @@ $(document).ready(function(){
         console.log("json: " + textStatus);
     })
     .fail(function(jqXHR, textStatus, errorThrown){
-        console.log(errorThrown);
-        show_error(textStatus);
+        show_error("The GPS waypoints and audio could not be loaded.");
     });
 
     /* first user event click to start */
@@ -251,7 +241,7 @@ function geomap_receive(position){
         geomap_next_waypoint();        
     }
 
-    // console.log(longitude, latitude);
+    console.log(longitude, latitude);
 
     console.log("check stories...");
 
@@ -312,7 +302,7 @@ function geomap_error(error) {
 
     if (error.code == 2) {
         //POSITION_UNAVAILABLE
-        show_error( "Your GPS position is unavailable. Please check your Location settings." );
+        // show_error( "Your GPS position is unavailable.<br>Please check your Location settings." );
     } else {
         show_error( error.message );
     }
