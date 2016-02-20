@@ -49,7 +49,7 @@ $(document).ready(function(){
 
     })
     .fail(function(jqXHR, textStatus, errorThrown){
-        show_error("The GPS waypoints and audio could not be loaded.");
+        show_error("The GPS waypoints and audio could not be loaded.<br>"+textStatus);
     });
 });
 
