@@ -1,4 +1,5 @@
 const DISTANCE_THRESHOLD = 20; // in meters
+const WAYPOINT_FILE_PATH = "http://hmcro.github.io/GPS-Walk/js/islington.json";
 
 var start_time, waypoint_time;
 var finished = false;
@@ -14,31 +15,41 @@ var waypointsObj;
 
 $(document).ready(function(){
 
-    $.getJSON('js/waypoints.json', function(json, textStatus) {
-        waypointsObj = json;
+    $.ajax({
+        url: WAYPOINT_FILE_PATH
+    })
+    .done(function(data, textStatus, jqXHR){
+        waypointsObj = data;
         $("#status .stories").html(waypointsObj.stories.length);
-    });
+        console.log("json: " + textStatus);
 
-    /* first user event click to start */
-    $(".submit").click(function(){        
-        play_sound("audio/hmcro/1_Welcome.mp3");
-        if (navigator.geolocation) {
-            geomap_init();
-            $('#intro').remove();
-        } else {
-            show_error("There was a location error");
-        }
-        
-    });
+        /* first user event click to start */
+        $(".submit").click(function(){        
+            play_sound("audio/hmcro/1_Welcome.mp3");
+            if (navigator.geolocation) {
+                geomap_init();
+                $('#intro').remove();
+            } else {
+                show_error("Geolocation has been disabled. Please check Settings > Privacy > Location.");
+            }
 
-    /* second user event click to refresh */
-    $(document).on("click", "a.refresh", function(){
-        location.reload();
-    });
+        });
 
-    /* skipping waypoints user interaction */
-    $(document).on("click", "a.nextwaypoint", function(){
-        geomap_next_waypoint();
+        $("#intro .submit").prop('disabled', false);
+
+        /* second user event click to refresh */
+        $(document).on("click", "a.refresh", function(){
+            location.reload();
+        });
+
+        /* skipping waypoints user interaction */
+        $(document).on("click", "a.nextwaypoint", function(){
+            geomap_next_waypoint();
+        });
+
+    })
+    .fail(function(jqXHR, textStatus, errorThrown){
+        show_error("The GPS waypoints and audio could not be loaded.<br>"+textStatus);
     });
 });
 
@@ -185,9 +196,9 @@ function geomap_init(){
             "type": "circle",
             "source": "markers",
             "paint": {
-                "circle-radius": 20,
+                "circle-radius": 40,
                 "circle-color": "#f15a24",
-                "circle-opacity": 0.8
+                "circle-opacity": 0.2
             }
         });
 
@@ -234,7 +245,7 @@ function geomap_receive(position){
         geomap_next_waypoint();        
     }
 
-    // console.log(longitude, latitude);
+    console.log(longitude, latitude);
 
     console.log("check stories...");
 
@@ -260,7 +271,7 @@ function geomap_receive(position){
 
 
 function geomap_next_waypoint() {
-    if (waypoint_index+1 < waypoints.length) 
+    if (waypoint_index+1 < waypointsObj.waypoints.length) 
     {
         /* update the list of points */
         play_sound( waypointsObj.waypoints[waypoint_index]["mp3"] );
@@ -277,7 +288,7 @@ function geomap_next_waypoint() {
     } 
     else 
     {
-        play_sound( waypointsObj.waypoints[++waypoint_index]["mp3"] );
+        play_sound( "audio/hmcro/21_Over.mp3" );
         finished = true;
 
         /* disable the map */
@@ -292,7 +303,13 @@ function geomap_next_waypoint() {
 
 
 function geomap_error(error) {
-    show_error( error.message );
+
+    if (error.code == 2) {
+        //POSITION_UNAVAILABLE
+        // show_error( "Your GPS position is unavailable.<br>Please check your Location settings." );
+    } else {
+        show_error( error.message );
+    }
 }
 
 

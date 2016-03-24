@@ -49,15 +49,19 @@ form * {
 }
 
 button.submit {
-	cursor: pointer;
 	text-transform: uppercase;
 	background-color: #c1491e;
 	color: #ffffff;
-	
-	/*margin: 1em 0;*/
 	border: 0;	
-	
 	letter-spacing: .1em;
+}
+
+button.submit:disabled {
+	opacity: 0.2;
+	cursor: default;
+}
+button.submit:enabled {
+	cursor: pointer;
 }
 
 a.refresh {
@@ -94,6 +98,10 @@ a.refresh {
 	display: none;
 }
 
+#status ul {
+	/*display: none;*/
+}
+
 #status li {
 	background-color: #f15a24;
 	padding: .2em .3em;
@@ -101,7 +109,7 @@ a.refresh {
 }
 
 #status li span {
-	font-size: 2em;
+	font-size: 1.5em;
 	line-height: 1em;
 }
 
