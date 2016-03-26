@@ -6,28 +6,32 @@
 	<link rel='apple-touch-icon-precomposed' href='img/apple-touch-icon-114.png'>
 	<link rel='apple-touch-icon' href='img/apple-touch-icon-114.png'>
 	<link rel='icon' type='image/x-icon' href='img/favicon.ico'>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta name="mobile-web-app-capable" content="yes">
 
-	<title>HMCRO</title>
+	<title>HMCRO GPS</title>
 
 	<link rel="stylesheet" href="css/reset.css">
-	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.0/mapbox-gl.css' rel='stylesheet' />
 	<link rel="stylesheet" href="css/styles.css">
 
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->	
+	<![endif]-->
+	
+	<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 </head>
 
 <body>
 
 	<div id="intro">
+		
 		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
+		
 		<h1>HMCRO</h1>
-		<h2>v1.0</h2>	
+		
+		<h2>v2.1</h2>	
 
 		<form name="hmcro">
 			<input type="number" name="id" placeholder="Citizen ID">
@@ -46,22 +50,28 @@
 			<li>Distance:<br><span class="speed">0m / 2977.2m</span></li>
 			<li>Stories:<br><span class="stories">0</span></li>
 			<li><a class="nextwaypoint">next</a></li>
+			<li>Compass:<br><span id="js-gps">0</span></li>
 		</ul>
+		
 		<p class="footer">© HM Citizen Rotation Office</p>
+		
 	</div>
 
 	<div id="map"></div>
 
 	<div id="end">
+		
 		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
 		<h1>HMCRO</h1>
 		<h2>Thank you. The localisation tour is now over.</h2>
 		<a class="refresh">Refresh</a>
+		
 	</div>
 
 
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.0/mapbox-gl.js'></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="js/fulltilt.js"></script>
+	<script src="js/soundplayer.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
