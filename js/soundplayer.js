@@ -2,14 +2,13 @@
 
 var SoundPlayer = function(){
 	
-	/* public methods and variables */
-	
+	/* public methods and variables */	
 	this.ended = true;
 	
 	this.queue = [];
 	
 	this.audio = new Audio();	
-	
+		
 	this.onended = function(e){
 		if (this.queue.length > 0) {
 			var file = this.queue.shift();
@@ -26,16 +25,13 @@ var SoundPlayer = function(){
 		else {
 			console.log( "queue up a sound " + _file );
 			this.queue.push( _file );
-		}
-		
+		}		
 	}
 	
-	/* events and triggers */
-	
+	/* events and triggers */	
 	this.audio.addEventListener("ended", this.onended.bind(this), false);
 	
-	/* private methods */
-	
+	/* private methods */	
 	this._play_sound = function( _file ){
 		this.ended = false;
 		this.audio.src = _file;

@@ -32,14 +32,12 @@ $(document).ready(function(){
 			var screenAdjustedEvent = orientationControl.getScreenAdjustedEuler();
 
 			// Convert true north heading to radians
-			heading = screenAdjustedEvent.alpha * Math.PI / 180;		
-			
-// 			$('#js-gps').text(heading);
+			heading = screenAdjustedEvent.alpha * Math.PI / 180;
 
 		});
 
 	}).catch(function(message) {
-		$('#js-gps').text(message);
+		console.log(message);
     });
 
 
@@ -93,6 +91,7 @@ function geomap_init(){
 
     map = L.mapbox.map('map', 'lukesturgeon.pgbe95a4').setView([51.506245, -0.25065243], 16);
     
+    /* create custom RotatedMarker code */
     L.RotatedMarker = L.Marker.extend({
 		options: { angle: 0 },
 		_setPos: function(pos) {
@@ -109,30 +108,36 @@ function geomap_init(){
 		costheta + ', M12=' + (-sintheta) + ', M21=' + sintheta + ', M22=' + costheta + ')';
 			}
 		}
-	});
-	
+	});	
 	L.rotatedMarker = function(pos, options) {
 		return new L.RotatedMarker(pos, options);
 	};
 
+	/* create current position marker */
 	current_user_position_latlng = L.latLng([51.506245, -0.25065243]);
     current_user_position_marker = L.rotatedMarker(current_user_position_latlng, {
 	    icon: L.icon({
-	    iconUrl: 'img/direction-marker-2.png',
+	    iconUrl: 'img/direction-marker.png',
 	    iconSize: [128, 128],
 	  }),
-	});
-	
-	current_user_position_marker.addTo(map);	
+	}).addTo(map);	
 	
 	window.setInterval(function() {	    
 	    current_user_position_marker.options.angle = -heading * (180 / Math.PI);
 	    current_user_position_marker.setLatLng( current_user_position_latlng );
 	}, 50);
     
-    var myIcon = L.icon({
-		iconUrl: 'img/marker.png',
-		iconRetinaUrl: 'img/marker.png',
+    
+    var yourMarker = L.icon({
+		iconUrl: 'img/your-marker.png',
+		iconRetinaUrl: 'img/your-marker.png',
+		iconSize: [128, 128],
+		iconAnchor: [64, 64]
+	});
+	
+	var miscMarker = L.icon({
+		iconUrl: 'img/misc-marker.png',
+		iconRetinaUrl: 'img/misc-marker.png',
 		iconSize: [128, 128],
 		iconAnchor: [64, 64]
 	});
@@ -152,14 +157,33 @@ function geomap_init(){
     }
     
     /* populate the geojson with waypoints */
+    var theMarker;
     for (var story in waypointsObj.stories) 
     {
+	    /* change the alpha based on type of story */
+	    switch (waypointsObj.stories[story].dir) {
+		    
+			case "adversity" :
+				theMarker = yourMarker;
+			    break;
+			    
+		    case "affluent" :			    
+		    case "comfortable" :			    
+		    case "prosperity" :			    
+		    case "stretched" :			    
+		    case "hmcro" :
+		    default :
+			    theMarker = miscMarker;
+			    break;
+	    }
+	    
+	    
 	    var ll = L.latLng([ waypointsObj.stories[story].latitude, waypointsObj.stories[story].longitude ]);	    
 		L.marker(ll, {
-			icon: 		myIcon,
+			icon: 		theMarker,
 			clickable: 	false,
 			keyboard: 	false,
-			opacity:	0.5
+			opacity:	1.0
 		}).addTo(map);
     }
     
