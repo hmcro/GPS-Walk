@@ -1,77 +1,60 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-
-	<link rel='apple-touch-icon-precomposed' href='img/apple-touch-icon-114.png'>
-	<link rel='apple-touch-icon' href='img/apple-touch-icon-114.png'>
-	<link rel='icon' type='image/x-icon' href='img/favicon.ico'>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<meta name="mobile-web-app-capable" content="yes">
-
-	<title>HMCRO GPS</title>
-
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/styles.css">
-
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+		<title>HMCRO</title>
+		
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+		<link rel="home" href="index.html" />
+		<link rel="stylesheet" href="css/styles.css">
 	
-	<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
-	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
-</head>
-
-<body>
-
-	<div id="intro">
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 		
-		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
+		<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
 		
-		<h1>HMCRO</h1>
+	</head>
+	<body>
+		<header>
+			
+			<h1><a href="#">HTML Template</a></h1>
+			
+			<nav>
+				<ul>
+					<li><a href="#one">One</a></li>
+					<li><a href="#two">Two</a></li>
+					<li><a href="#three">Three</a></li>
+				</ul>
+			</nav>
+			
+		</header>
 		
-		<h2>v2.1</h2>	
-
-		<form name="hmcro">
-			<input type="number" name="id" placeholder="Citizen ID">
-			<button class="submit" type="submit" form="hmcro" value="Submit" disabled="disabled">Begin Localisation</button>
-		</form>
-
-		<p><a class="refresh">Refresh</a></p>
-
-	</div>
-
-
-	<div id="status">
-
-		<ul>
-			<li>Duration:<br><span class="time">00:00</span></li>
-			<li>Distance:<br><span class="speed">0m / 2977.2m</span></li>
-			<li>Stories:<br><span class="stories">0</span></li>
-			<li><a class="nextwaypoint">next</a></li>
-		</ul>
+		<main>
+			<h1>Heading 1</h1>
+			<h2>Heading 2</h2>
+			<h3>Heading 3</h3>
+			<h4>Heading 4</h4>
+			<h5>Heading 5</h5>
+			<h6>Heading 6</h6>
+			<p>Paragraph</p>
+			<ul>
+				<li>List one</li>
+				<li>List two</li>
+			</ul>
+			<hr>
+			
+		</main>
 		
-		<p class="footer">© HM Citizen Rotation Office</p>
-		
-	</div>
-
-	<div id="map"></div>
-
-	<div id="end">
-		
-		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
-		<h1>HMCRO</h1>
-		<h2>Thank you. The localisation tour is now over.</h2>
-		<a class="refresh">Refresh</a>
-		
-	</div>
-
-
-	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script src="js/fulltilt.js"></script>
-	<script src="js/soundplayer.js"></script>
-	<script src="js/script.js"></script>
-</body>
+		<footer>
+			<p>&copy; Luke Sturgeon</p>
+		</footer>	
+	
+	</body>
 </html>

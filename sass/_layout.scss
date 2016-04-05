@@ -1,0 +1,49 @@
+$light-grey: #7f7f7f;
+$dark-grey: #333333;
+
+body {
+	background-color: $dark-grey;
+	color: #fff;
+}
+
+#view-menu {
+	background-color: #000;
+	z-index: 99;
+}
+
+#view-menu li {
+	width: 32%;
+	display: inline-block;
+	text-align: center;
+}
+
+#view-menu li:last-child {
+	float: right;
+}
+
+#view-menu li a {
+	display: block;
+	width: 100%;
+	padding: 10px 0;
+	color: $light-grey;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#view-menu li.active a {
+	color: #fff;
+	background-color: $dark-grey;
+}
+
+.view {
+	width: 100%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+}
+
+#map {
+// 	position: absolute;
+// 	width:100%;
+	z-index: -99;
+}

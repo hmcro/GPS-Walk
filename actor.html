@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="mobile-web-app-capable" content="yes">
+	
+		<title>HMCRO</title>
+		
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+		<link rel="home" href="index.html" />
+		<link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css'  />
+		<link rel="stylesheet" href="css/styles.css">
+	
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+	</head>
+	<body>
+		<header>
+			
+			<nav>
+				<ul id="view-menu">
+					<li><a href="#map"><h1>Map</h1></a></li>
+					<li><a href="#chat"><h1>Chat</h1></a></li>
+					<li><a href="#settings"><h1>Settings</h1></a></li>
+				</ul>
+			</nav>
+			
+		</header>
+		
+		<section class="view" id="map">
+			
+			<p>Connecting&hellip;</p>			
+			
+		</section>
+		
+		<section class="view" id="chat">
+			
+			chat content
+			
+		</section>
+		
+		<section class="view" id="settings">
+			
+			<p>Longitude: <span id="geo-longitude"></span></p>
+			<p>Latitude: <span id="geo-latitude"></span></p>
+			<p>Heading: <span id="geo-heading"></span></p>
+			
+		</section>
+		
+		<script src='http://code.jquery.com/jquery-2.2.2.min.js'></script>
+		<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+		<script src='js/fulltilt.js'></script>
+		<script src='js/geolocation.js'></script>
+		<script src='js/compass.js'></script>
+		<script src='js/main.js'></script>
+	
+	</body>
+</html>
