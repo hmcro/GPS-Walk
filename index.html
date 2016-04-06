@@ -6,34 +6,33 @@
 	<link rel='apple-touch-icon-precomposed' href='img/apple-touch-icon-114.png'>
 	<link rel='apple-touch-icon' href='img/apple-touch-icon-114.png'>
 	<link rel='icon' type='image/x-icon' href='img/favicon.ico'>
-
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta name="mobile-web-app-capable" content="yes">
 
-	<title>HMCRO</title>
+	<title>HMCRO GPS</title>
 
 	<link rel="stylesheet" href="css/reset.css">
-	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.0/mapbox-gl.css' rel='stylesheet' />
 	<link rel="stylesheet" href="css/styles.css">
 
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->	
+	<![endif]-->
+	
+	<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 </head>
 
 <body>
 
 	<div id="intro">
+		
 		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
+		
 		<h1>HMCRO</h1>
-		<h2>v0.13.0</h2>
-
-		<p>The planet’s global population grew exponentially, enormous numbers of people migrated between countries, cities and territories. Evermore sophisticated algorithms were introduced to optimise the distribution of services, resources, transport, food and healthcare, and the sharing economy created more opportunity for access but parallel opportunity for capital. Citizens and their belongings were gradually being shared and distributed across the city. Affordable housing disappeared, while vast areas of privately owned urban infrastructure sat unused and unavailable, the divide between wealth and poverty growing beyond imagination.</p>
-
-		<p>As global markets crashed, the UK government was forced to intervene, reclaiming the housing market and incorporating the most established sharing services within a new government policy. Temporary habitation of space became mandatory as the city optimised the distribution of its citizens. The algorithm replaced the committee, providing real-time and immediate optimisation of the invisible infrastructure, continually redefining the meaning between the spatial and temporal relationships of networked places, objects and people.</p>
-
-		<p>Mobile technologies have combined with ubiquitous networked devices, enabling the sensing and recording of real-time citizen behaviour in public and private spaces. The HM Citizen Rotation Office relies on these technologies to maintain the healthy and safe distribution of all citizens and their homes.</p>	
+		
+		<h2>v2.1</h2>	
 
 		<form name="hmcro">
 			<input type="number" name="id" placeholder="Citizen ID">
@@ -53,21 +52,26 @@
 			<li>Stories:<br><span class="stories">0</span></li>
 			<li><a class="nextwaypoint">next</a></li>
 		</ul>
+		
 		<p class="footer">© HM Citizen Rotation Office</p>
+		
 	</div>
 
 	<div id="map"></div>
 
 	<div id="end">
+		
 		<img class="logo" src="img/logo_icon.svg" width="64" height="64" alt="HMCRO Logo"/>
 		<h1>HMCRO</h1>
 		<h2>Thank you. The localisation tour is now over.</h2>
 		<a class="refresh">Refresh</a>
+		
 	</div>
 
 
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.0/mapbox-gl.js'></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="js/fulltilt.js"></script>
+	<script src="js/soundplayer.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 const DISTANCE_THRESHOLD = 20; // in meters
-const WAYPOINT_FILE_PATH = "http://hmcro.github.io/GPS-Walk/js/islington.json";
+const WAYPOINT_FILE_PATH = "js/islington.json";
 
 var start_time, waypoint_time;
 var finished = false;
@@ -9,19 +9,49 @@ var location_point, location_source;
 var waypoint_t_point, waypoint_t_source;
 var waypoint_index = 0;
 var waypoint_reminder_index = -1;
-
 var waypointsObj;
+
+var soundplayer = new SoundPlayer();
+
+var heading = 0;
+
+var current_user_position_marker;
+var current_user_position_latlng;
 
 
 $(document).ready(function(){
+	
+
+	var promise = FULLTILT.getDeviceOrientation({'type': 'world'});
+	
+	promise.then(function(orientationControl) {
+		
+		orientationControl.listen(function() {
+
+			// Get latest screen-adjusted deviceorientation data
+			var screenAdjustedEvent = orientationControl.getScreenAdjustedEuler();
+
+			// Convert true north heading to radians
+			heading = screenAdjustedEvent.alpha * Math.PI / 180;
+
+		});
+
+	}).catch(function(message) {
+		console.log(message);
+    });
+
 
     $.ajax({
-        url: WAYPOINT_FILE_PATH
+        type: 'GET',
+        url: WAYPOINT_FILE_PATH,
+        dataType: 'json',
     })
     .done(function(data, textStatus, jqXHR){
+	    
         waypointsObj = data;
-        $("#status .stories").html(waypointsObj.stories.length);
-        console.log("json: " + textStatus);
+//         $("#status .stories").html(data["stories"].length);
+
+		console.log( waypointsObj.stories );
 
         /* first user event click to start */
         $(".submit").click(function(){        
@@ -56,169 +86,123 @@ $(document).ready(function(){
 /* GEOMAP SPECIFIC STUFF */
 
 function geomap_init(){
-    mapboxgl.accessToken = "pk.eyJ1IjoibHVrZXN0dXJnZW9uIiwiYSI6ImNpazcwenlzYjAwenZpZm0yZGVtOXpzNGoifQ.qBHqidaLVWQtIEu09uhSkg";
+	
+    L.mapbox.accessToken = 'pk.eyJ1IjoibHVrZXN0dXJnZW9uIiwiYSI6ImNpazcwenlzYjAwenZpZm0yZGVtOXpzNGoifQ.qBHqidaLVWQtIEu09uhSkg';
 
-    //mapbox://styles/lukesturgeon/cikfgefxf0019sjlxx6l8cl2j
+    map = L.mapbox.map('map', 'lukesturgeon.pgbe95a4').setView([51.506245, -0.25065243], 16);
+    
+    /* create custom RotatedMarker code */
+    L.RotatedMarker = L.Marker.extend({
+		options: { angle: 0 },
+		_setPos: function(pos) {
+			L.Marker.prototype._setPos.call(this, pos);
+			if (L.DomUtil.TRANSFORM) {
+				// use the CSS transform rule if available
+				this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)';
+			} else if (L.Browser.ie) {
+				// fallback for IE6, IE7, IE8
+				var rad = this.options.angle * L.LatLng.DEG_TO_RAD,
+				costheta = Math.cos(rad),
+				sintheta = Math.sin(rad);
+				this._icon.style.filter += ' progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'auto expand\', M11=' +
+		costheta + ', M12=' + (-sintheta) + ', M21=' + sintheta + ', M22=' + costheta + ')';
+			}
+		}
+	});	
+	L.rotatedMarker = function(pos, options) {
+		return new L.RotatedMarker(pos, options);
+	};
 
-    map = new mapboxgl.Map({
-        container:'map', 
-        style:'mapbox://styles/mapbox/basic-v8',
-        zoom: 16,
-        center: [waypointsObj.waypoints[0]["longitude"],waypointsObj.waypoints[0]["latitude"]],
-        interactive: true
+	/* create current position marker */
+	current_user_position_latlng = L.latLng([51.506245, -0.25065243]);
+    current_user_position_marker = L.rotatedMarker(current_user_position_latlng, {
+	    icon: L.icon({
+	    iconUrl: 'img/direction-marker.png',
+	    iconSize: [128, 128],
+	  }),
+	}).addTo(map);	
+	
+	window.setInterval(function() {	    
+	    current_user_position_marker.options.angle = -heading * (180 / Math.PI);
+	    current_user_position_marker.setLatLng( current_user_position_latlng );
+	}, 50);
+    
+    
+    var yourMarker = L.icon({
+		iconUrl: 'img/your-marker.png',
+		iconRetinaUrl: 'img/your-marker.png',
+		iconSize: [128, 128],
+		iconAnchor: [64, 64]
+	});
+	
+	var miscMarker = L.icon({
+		iconUrl: 'img/misc-marker.png',
+		iconRetinaUrl: 'img/misc-marker.png',
+		iconSize: [128, 128],
+		iconAnchor: [64, 64]
+	});
+    
+     // create a red polyline from an arrays of LatLng points
+	var polyline = L.polyline([], {
+		color: '#f15a24',
+		weight: 12,
+		opacity: 1.0
+		
+	}).addTo(map);
+
+    for (var i = 0; i < waypointsObj.waypoints.length; i++) 
+    {
+	    var ll = L.latLng([ waypointsObj.waypoints[i].latitude, waypointsObj.waypoints[i].longitude ]);
+		polyline.addLatLng( ll );
+    }
+    
+    /* populate the geojson with waypoints */
+    var theMarker;
+    for (var story in waypointsObj.stories) 
+    {
+	    /* change the alpha based on type of story */
+	    switch (waypointsObj.stories[story].dir) {
+		    
+			case "adversity" :
+				theMarker = yourMarker;
+			    break;
+			    
+		    case "affluent" :			    
+		    case "comfortable" :			    
+		    case "prosperity" :			    
+		    case "stretched" :			    
+		    case "hmcro" :
+		    default :
+			    theMarker = miscMarker;
+			    break;
+	    }
+	    
+	    
+	    var ll = L.latLng([ waypointsObj.stories[story].latitude, waypointsObj.stories[story].longitude ]);	    
+		L.marker(ll, {
+			icon: 		theMarker,
+			clickable: 	false,
+			keyboard: 	false,
+			opacity:	1.0
+		}).addTo(map);
+    }
+    
+    /* setup the geolocation callbacks */
+    wpid = navigator.geolocation.watchPosition( geomap_receive , geomap_error , {
+        enableHighAccuracy: true, 
+        maximumAge        : 30000, 
+        timeout           : 27000
     });
 
-    map.on('style.load', function(){
-        /* create a geojson object to store the waypoints */
-        var waypoints_geojson = {
-            "type":"geojson",
-            "data":{
-                "type":"Feature",
-                "properties":{},
-                "geometry":{
-                    "type":"LineString",
-                    "coordinates":[]
-                }
-            }
-        };
+    /* start a timer */
+    start_time = waypoint_time = new Date().getTime();
 
-        /* populate the geojson with waypoints */
-        for (var i = 0; i < waypointsObj.waypoints.length; i++) 
-        {
-            waypoints_geojson["data"]["geometry"]["coordinates"].push([
-                waypointsObj.waypoints[i]["longitude"],
-                waypointsObj.waypoints[i]["latitude"]
-                ]);
-        }
+    secid = setInterval(function(){
+        timer_tick();
+    }, 1000);
 
-        map.addSource("waypoints", waypoints_geojson);
-        map.addLayer({
-            "id": "waypoints",
-            "type": "line",
-            "source": "waypoints",
-            "layout": {
-                "line-join": "round",
-                "line-cap": "round"
-            },
-            "paint": {
-                "line-color": "#f15a24",
-                "line-width": 14
-            }
-        });
-
-        /* create a current waypoint marker */
-        waypoint_t_point = {
-            "type": "Point",
-            "coordinates": [waypointsObj.waypoints[waypoint_index]["longitude"], 
-            waypointsObj.waypoints[waypoint_index]["latitude"]]
-        };
-        waypoint_t_source = new mapboxgl.GeoJSONSource({
-            "data": waypoint_t_point
-        });
-        map.addSource('target', waypoint_t_source);
-        map.addLayer({
-            "id": "target",
-            "type": "circle",
-            "source": "target",
-            "paint": {
-                "circle-radius": 5,
-                "circle-color": "#000000",
-                "circle-opacity": 1
-            }
-        });
-
-        /* create a current location cursor */
-        location_point = {
-            "type": "Point",
-            "coordinates": [ 0, 0 ]
-        };
-
-        location_source = new mapboxgl.GeoJSONSource({
-            "data": location_point
-        });
-
-        map.addSource('drone', location_source);
-
-        map.addLayer({
-            "id": "drone-outer",
-            "type": "circle",
-            "source": "drone",
-            "paint": {
-                "circle-radius": 15,
-                "circle-color": "#f15a24",
-                "circle-opacity": 1
-            }
-        });
-
-        map.addLayer({
-            "id": "drone-inner",
-            "type": "circle",
-            "source": "drone",
-            "paint": {
-                "circle-radius": 5,
-                "circle-color": "#fff",
-                "circle-opacity": 1
-            }
-        });
-
-        /* create story markers */
-        var story_geojson = {
-            "type": "geojson",
-            "data": {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-0.10176301, 51.533069]
-                    }
-                }, ]
-            }
-        }
-
-        /* populate the geojson with waypoints */
-        for (var story in waypointsObj.stories) 
-        {
-            story_geojson["data"]["features"].push({
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [waypointsObj.stories[story].longitude, waypointsObj.stories[story].latitude]
-                }
-            });
-
-            // console.log(waypointsObj.stories[story].longitude, waypointsObj.stories[story].latitude);
-        }
-
-        map.addSource("markers", story_geojson);
-        map.addLayer({
-            "id": "markers",
-            "type": "circle",
-            "source": "markers",
-            "paint": {
-                "circle-radius": 40,
-                "circle-color": "#f15a24",
-                "circle-opacity": 0.2
-            }
-        });
-
-        /* setup the geolocation callbacks */
-        wpid = navigator.geolocation.watchPosition( geomap_receive , geomap_error , {
-            enableHighAccuracy: true, 
-            maximumAge        : 30000, 
-            timeout           : 27000
-        });
-
-        /* start a timer */
-        start_time = waypoint_time = new Date().getTime();
-
-        secid = setInterval(function(){
-            timer_tick();
-        }, 1000);
-
-        /* show the status data */
-        $("#status").show();
-    });
+    /* show the status data */
+    $("#status").show();
 }
 
 
@@ -228,9 +212,13 @@ function geomap_receive(position){
 
     // map.panTo([longitude, latitude]);
 
+/*
     location_point.coordinates[0] = longitude;
     location_point.coordinates[1] = latitude;
-    location_source.setData(location_point);  
+    location_source.setData(location_point);
+*/
+    
+    current_user_position_latlng = L.latLng(latitude, longitude);
 
     // $("#status .latitude").html(latitude);
     // $("#status .longitude").html(longitude);
@@ -370,6 +358,5 @@ function show_error(message){
 }
 
 function play_sound(url){
-    var snd = new Audio(url);
-    snd.play();
+	soundplayer.play_sound( url );
 }

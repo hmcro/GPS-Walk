@@ -12,7 +12,6 @@
 		{"latitude":51.505317, "longitude":-0.24901628, "mp3":"audio/adversity/Church.mp3"},
 		{"latitude":51.505851, "longitude":-0.24901628, "mp3":"audio/adversity/School.mp3"},
 		{"latitude":51.506422, "longitude":-0.24927378, "mp3":"audio/adversity/CityShouldChange.mp3"},
-
 		{"latitude":51.504986, "longitude":-0.25022328, "mp3":"audio/comfortable/Administrator.mp3"},
 		{"latitude":51.506970, "longitude":-0.25065243, "mp3":"audio/comfortable/Sensors.mp3"},
 		{"latitude":51.504789, "longitude":-0.24979413, "mp3":"audio/comfortable/WeLiveInPublic.mp3"}
