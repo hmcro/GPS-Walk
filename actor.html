@@ -11,8 +11,8 @@
 	
 		<title>HMCRO</title>
 		
-		<link rel="apple-touch-icon" href="apple-touch-icon.png">
-		<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+		<link rel="icon" href="img/favicon.ico">
 		<link rel="home" href="index.html" />
 		<link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css'  />
 		<link rel="stylesheet" href="css/styles.css">
@@ -28,7 +28,7 @@
 			<nav>
 				<ul id="view-menu">
 					<li><a href="#map"><h1>Map</h1></a></li>
-					<li><a href="#chat"><h1>Chat</h1></a></li>
+					<li><a href="#chat"><h1>Messages</h1></a></li>
 					<li><a href="#settings"><h1>Settings</h1></a></li>
 				</ul>
 			</nav>
@@ -43,7 +43,57 @@
 		
 		<section class="view" id="chat">
 			
-			chat content
+			<form>
+			
+			<div id="">
+			    <span>Select HMCRO participant&hellip;</span>
+			    <ul>
+				    <li>
+				    	<input type="checkbox" value="1" name="participant" id="participant-1">
+					    <label for="participant-1"><img src="" width="48" height="48" />Participant A</label>
+				    </li>
+					<li>
+						<input type="checkbox" value="2" name="participant" id="participant-2">
+						<label for="participant-2"><img src="" width="48" height="48" />Participant B</label>
+					</li>
+					<li>
+						<input type="checkbox" value="3" name="participant" id="participant-3">
+						<label for="participant-3"><img src="" width="48" height="48" />Participant C</label>
+					</li>
+					<li>
+						<input type="checkbox" value="4" name="participant" id="participant-4">
+						<label for="participant-4"><img src="" width="48" height="48" />Participant D</label>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+			    <span>Select HMCRO message&hellip;</span>
+			    <ul>
+				    <li>
+				    	<input type="checkbox" value="A fellow citizen is concerned about the politics of this locality. Would you like to hear more about this?" name="message" id="message-0">
+					    <label for="message">A fellow citizen is concerned about the politics of this locality. Would you like to hear more about this?</label>
+				    </li>
+					<li>
+						<input type="checkbox" value="Bit quo conseque pro et dolorum hil idusand iandiat umquam et experion cusam facest autae serum fugiam quat quo ide volor se." name="message" id="message-1">
+						<label for="message-1">Bit quo conseque pro et dolorum hil idusand iandiat umquam et experion cusam facest autae serum fugiam quat quo ide volor se.</label>
+					</li>
+					<li>
+						<input type="checkbox" value="Bit quo conseque pro et dolorum hil idusand iandiat umquam et experion cusam facest autae serum fugiam quat quo ide volor se." name="message" id="message-2">
+						<label for="message-2">Bit quo conseque pro et dolorum hil idusand iandiat umquam et experion cusam facest autae serum fugiam quat quo ide volor se.</label>
+					</li>
+					<li>
+						<input type="checkbox" value="Accus inctotaturio opta venim quatat doloreium qui dus quo optatendit laborrum lam re latis quid ute ne lantiorum re, ut omnis et officab oriatum id qui dolum endusa quibusae es explabo. Amet est, culparum qui sit ommolor epudis aut voluptae." name="message" id="message-2">
+						<label for="message-2">Accus inctotaturio opta venim quatat doloreium qui dus quo optatendit laborrum lam re latis quid ute ne lantiorum re, ut omnis et officab oriatum id qui dolum endusa quibusae es explabo. Amet est, culparum qui sit ommolor epudis aut voluptae.</label>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+			    <input type="submit" value="Send message from HMCRO" name="submit" class="button">
+		    </div>
+			
+			</form>
 			
 		</section>
 		
@@ -53,6 +103,8 @@
 			<p>Latitude: <span id="geo-latitude"></span></p>
 			<p>Heading: <span id="geo-heading"></span></p>
 			
+			<p><a href="tel:07731540398">Call Luke now 07731540398</a></p>
+			
 		</section>
 		
 		<script src='http://code.jquery.com/jquery-2.2.2.min.js'></script>
@@ -60,7 +112,7 @@
 		<script src='js/fulltilt.js'></script>
 		<script src='js/geolocation.js'></script>
 		<script src='js/compass.js'></script>
-		<script src='js/main.js'></script>
+		<script src='js/actor.js'></script>
 	
 	</body>
 </html>

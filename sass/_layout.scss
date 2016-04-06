@@ -1,14 +1,35 @@
-$light-grey: #7f7f7f;
-$dark-grey: #333333;
+$orange: 		#f15a24;
+$mid-orange: 	#d84f2e;
+$dark-orange:	#c14629;
+$light-grey: 	#7f7f7f;
+$dark-grey: 	#333333;
+
+html, body {
+	height: 100%;
+}
 
 body {
 	background-color: $dark-grey;
 	color: #fff;
 }
 
+#homepage {
+	background-color: $orange;
+	height: 100%;
+}
+
+#homepage img {
+	position: absolute;
+	top:50%;
+	left:50%;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+}
+
 #view-menu {
 	background-color: #000;
-	z-index: 99;
+	z-index: 999;
 }
 
 #view-menu li {
@@ -45,5 +66,5 @@ body {
 #map {
 // 	position: absolute;
 // 	width:100%;
-	z-index: -99;
+	z-index: 99;
 }

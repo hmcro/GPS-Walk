@@ -4,7 +4,6 @@ $(function(){
 	/*
 		SETUP SCREEN ORIENTATION
 	*/
-// 	window.screen.lockOrientation('portrait');
 	
 	
 	/* 
