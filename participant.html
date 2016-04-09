@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="The HMCRO is currently accepting applications for the next round of citizenship exams. Selected participants will be expected to attend a mandatory localisation exam in London between now and June.">
+		<meta name="keywords" content="speculative design, critical design, future of government, research, design research, ethnography, performance, walk, gps, location, housing, accomodation, smart city, future city.">
+		<meta name="author" content="Luke Sturgeon">		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="mobile-web-app-capable" content="yes">
+	
+		<title>GPS v2.5</title>
+		
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+		<link rel="icon" href="img/favicon.ico" />
+		<link rel="home" href="index.html" />
+		
+		<link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" />
+		<link rel="stylesheet" href="css/participant.css" />
+	
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+	</head>
+	<body>
+		
+		<header id="header">
+			
+			<div class="view_wrapper">
+			
+				<span id="header_copy">HM Citizen Rotation Office</span>
+				<span id="header_info"><a href="#info">Info</a></span>
+				
+			</div>
+			
+		</header>
+		
+		<section id="welcome" class="view">
+			
+			<div class="view_wrapper">
+			
+				<header>				
+					
+					<img src="img/HMCRO_LOGO_WHITE.svg" />
+					<h1>HM Citizen Rotation Office</h1>
+										
+				</header>
+				
+				<form id="welcome_form">
+					
+					<div class="cid">
+						<input type="number" value="" name="CID" placeholder="Citizen ID">
+					</div>
+					
+					<div class="clear">
+					    <input type="submit" value="START" name="START" class="button">
+				    </div>
+				    
+				</form>
+				
+				<div id="welcome_animation">
+					<ul>
+						<li>Welcome <span class="js-username">Luke</span>,</li>
+						<li>HMCRO is now analysing your personal data to create your initial citizen profile, this profile will be updated in real-time based on your actions within the city.</li>
+						<li>[x] Email correspondance</li>
+						<li>[x] Calendar</li>
+						<li>Building audio guide</li>
+						<li>Ready</li>
+					</ul>
+				</div>
+			
+			</div>
+			
+		</section>
+		
+		<section id="map" class="view">
+			
+			<div id="map_notifications"></div>
+			<div id="map_statistics">Your personalised audio guide and localisation exam will begin at Angel station. You are 24m from your start point.</div>			
+			<div id="mapbox"></div>
+			
+		</section>
+		
+		<section id="info" class="view">
+			
+			<div class="view_wrapper">
+		
+				<p>Geolocation: <span id="js-geolocation"</span></p>
+				<p>Latitude: <span id="js-latitude"</span></p>
+				<p>Longitude: <span id="js-longitude"</span></p>
+				<p>DeviceOrientation: <span id="js-deviceOrientation"></span></p>
+				<p>Heading: <span id="js-heading"</span></p>
+				<p>Citizen ID: <span class="js-cid"></span></p>
+				<p>Username: <span class="js-username"></span></p>
+				<p>Waypoints: <span class="js-waypoints"></span></p>
+				<input type="submit" value="CLEAR CACHE" name="CLEARCACHE" class="button">
+			
+			</div>
+			
+		</section>
+		
+		<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
+		<script src="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js"></script>
+		<script src="js/fulltilt.js"></script>
+		<script src="js/geolocation.js"></script>
+		<script src="js/waypoints.js"></script>
+		<script src="js/compass.js"></script>
+		<script src="js/participant.js"></script>
+	
+	</body>
+</html>

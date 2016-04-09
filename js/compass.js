@@ -1,35 +1,44 @@
-function Compass(){
+var Compass = (function(){
 	
-	console.log("new Compass");
-	
-	this.isReady = false;
-	
-	this.device_heading = 0;
-	
-	this.promise = FULLTILT.getDeviceOrientation({'type': 'world'});
-	
-	this.promise.then(function(orientationControl) {
+	function Compass(){
 		
-		this.isReady = true;
+		console.log("new Compass");
 		
-		orientationControl.listen(function() {
-
-			// Get latest screen-adjusted deviceorientation data
-			var screenAdjustedEvent = orientationControl.getScreenAdjustedEuler();
-
-			// Convert true north heading to radians
-			this.device_heading = screenAdjustedEvent.alpha * Math.PI / 180;
+		this.isSupported = false;
+		
+		if (window.DeviceOrientationEvent) {
+			this.isSupported = true;
+		}
+		
+	};
+	
+	
+	Compass.prototype.start = function(){
+		
+		this.promise = FULLTILT.getDeviceOrientation({'type': 'world'});
+		this.promise.then(function(orientationControl) {
 			
-			var event = new CustomEvent("compass_update", {
-				detail: {
-					heading: this.device_heading
-				}
+			orientationControl.listen(function() {
+
+				// Get latest screen-adjusted deviceorientation data
+				var screenAdjustedEvent = orientationControl.getScreenAdjustedEuler();
+	
+				// Convert true north heading to radians
+				this.device_heading = screenAdjustedEvent.alpha * Math.PI / 180;
+				
+				var event = new CustomEvent("compassChange", {
+					detail: {
+						heading: this.device_heading
+					}
+				});				
+				document.dispatchEvent( event );
 			});
-			
-			document.dispatchEvent( event );
-		});
-	})
-	.catch(function(message) {	
-		console.warn(message);
-    });
-}
+				
+			}).catch(function(error){						
+				console.warn(error);
+			});
+		};
+	
+	return Compass;
+	
+})();

@@ -52,3 +52,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* disable ios button rounded corners and bevels */
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}

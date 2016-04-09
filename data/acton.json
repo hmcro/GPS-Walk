@@ -1,0 +1,19 @@
+{
+	"waypoints":[
+		{"latitude":51.506245, "longitude":-0.25065243, "mp3":"audio/hmcro/2_DuncanSt.mp3"},
+		{"latitude":51.505193, "longitude":-0.25021255, "mp3":"audio/hmcro/3_RegentsCanal.mp3"},
+		{"latitude":51.505387, "longitude":-0.24897873, "mp3":"audio/hmcro/4_Steps.mp3"},
+		{"latitude":51.506602, "longitude":-0.24932206, "mp3":"audio/hmcro/5_GrahamSt.mp3"},
+		{"latitude":51.506632, "longitude":-0.25056660, "mp3":""}
+	],
+	"stories":[
+		{"latitude":51.506025, "longitude":-0.25060415, "mp3":"audio/adversity/Hello.mp3"},
+		{"latitude":51.505260, "longitude":-0.24961710, "mp3":"audio/adversity/Canal2.mp3"},
+		{"latitude":51.505317, "longitude":-0.24901628, "mp3":"audio/adversity/Church.mp3"},
+		{"latitude":51.505851, "longitude":-0.24901628, "mp3":"audio/adversity/School.mp3"},
+		{"latitude":51.506422, "longitude":-0.24927378, "mp3":"audio/adversity/CityShouldChange.mp3"},
+		{"latitude":51.504986, "longitude":-0.25022328, "mp3":"audio/comfortable/Administrator.mp3"},
+		{"latitude":51.506970, "longitude":-0.25065243, "mp3":"audio/comfortable/Sensors.mp3"},
+		{"latitude":51.504789, "longitude":-0.24979413, "mp3":"audio/comfortable/WeLiveInPublic.mp3"}
+	]
+}
