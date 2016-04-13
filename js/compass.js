@@ -30,14 +30,20 @@ var Compass = (function(){
 					detail: {
 						heading: this.device_heading
 					}
-				});				
+				});	
+							
 				document.dispatchEvent( event );
 			});
 				
-			}).catch(function(error){						
-				console.warn(error);
-			});
-		};
+		}).catch(function(error){						
+			console.warn(error);
+		});
+	};
+	
+	
+	Compass.prototype.stop = function(){
+		this.promise.stop();
+	}
 	
 	return Compass;
 	

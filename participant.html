@@ -61,11 +61,18 @@
 				
 				<div id="welcome_animation">
 					<ul>
-						<li>Welcome <span class="js-username">Luke</span>,</li>
-						<li>HMCRO is now analysing your personal data to create your initial citizen profile, this profile will be updated in real-time based on your actions within the city.</li>
-						<li>[x] Email correspondance</li>
+						<li>Welcome <span class="js-username"></span>,</li>
+						<li>Analysing your data to create your initial citizen profile</li>
+						<li>Your profile will be updated in real-time based on your actions within the city.</li>
+						<li>[x] Political Preferences</li>
 						<li>[x] Calendar</li>
-						<li>Building audio guide</li>
+						<li>[x] Social Contribution</li>
+						<li>[x] Relationships</li>
+						<li>[x] Media</li>
+						<li>[x] Emotional Actions</li>
+						<li>[x] Social Media</li>
+						<li>Found 19 citizen matches</li>
+						<li>Building audio guide&hellip;</li>
 						<li>Ready</li>
 					</ul>
 				</div>
@@ -76,8 +83,10 @@
 		
 		<section id="map" class="view">
 			
-			<div id="map_notifications"></div>
-			<div id="map_statistics">Your personalised audio guide and localisation exam will begin at Angel station. You are 24m from your start point.</div>			
+<!-- 			<div id="map_notifications"></div> -->
+			<div class="map_overlay" id="map_start">Your personalised audio guide and localisation exam will begin at Angel station. You are <span class="js-distanceFrom">0</span>m from your start point.</div>	
+			<div class="map_overlay" id="map_statistics">Duration: <span class="js-duration">00:00</span><br/>Distance: <span class="js-distanceFrom">0</span>m<br/>Total: 2977.2m<br/>Messages: <span class="js-messagePlay">0</span>/<span class="js-messages">0</span></div>
+					
 			<div id="mapbox"></div>
 			
 		</section>
@@ -93,7 +102,8 @@
 				<p>Heading: <span id="js-heading"</span></p>
 				<p>Citizen ID: <span class="js-cid"></span></p>
 				<p>Username: <span class="js-username"></span></p>
-				<p>Waypoints: <span class="js-waypoints"></span></p>
+				<p>Waypoints: <span class="js-currentWaypoint">0</span>/<span class="js-waypoints">0</span></p>
+				<p>Messages: <span class="js-messagePlay">0</span>/<span class="js-messages">0</span></p>
 				<input type="submit" value="CLEAR CACHE" name="CLEARCACHE" class="button">
 			
 			</div>
@@ -103,6 +113,7 @@
 		<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
 		<script src="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js"></script>
 		<script src="js/fulltilt.js"></script>
+		<script src="js/soundplayer.js"></script>
 		<script src="js/geolocation.js"></script>
 		<script src="js/waypoints.js"></script>
 		<script src="js/compass.js"></script>

@@ -53,6 +53,10 @@ var GeoLocation = (function(){
 	GeoLocation.prototype.watchPosition = function(){		
 		this.id = navigator.geolocation.watchPosition(this.onSuccess.bind(this), this.onError.bind(this), this.options );
 	};
+	
+	GeoLocation.prototype.stop = function(){
+		navigator.geolocation.clearWatch( this.id );
+	}
 		
 	return GeoLocation;
 	
