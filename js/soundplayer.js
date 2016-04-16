@@ -1,41 +1,47 @@
-'use strict'
-
-var SoundPlayer = function(){
+var SoundPlayer = (function(){
 	
-	/* public methods and variables */	
-	this.ended = true;
-	
-	this.queue = [];
-	
-	this.audio = new Audio();	
+	function SoundPlayer(){
 		
-	this.onended = function(e){
-		if (this.queue.length > 0) {
-			var file = this.queue.shift();
-			this._play_sound( file );
-		}
+		console.log("new SoundPlayer");
+		
+		this.ended = true;
+		this.queue = [];
+		this.audio = new Audio();
+		
+		this.__onended = function(e){
+			this.ended = true;
+			if (this.queue.length > 0) {
+				var file = this.queue.shift();
+				this.__play( file );
+			}
+		};				
+		
+		this.__play = function(file){
+			this.ended = false;
+			this.audio.src = file;
+			this.audio.play();
+		};
+		
+		this.audio.addEventListener("ended", this.__onended.bind(this), false);	
 	};
 	
-	this.play_sound = function( _file ){
+	SoundPlayer.prototype.play = function( file, force ){
 		
-		if ( this.ended ) {
-			console.log( "play new sound" );
-			this._play_sound( _file );
+		if (force == true ) {
+// 			alert("force play: " + file);
+			// play over the top
+			new Audio(file).play();
+		}
+		else if ( this.ended ) {
+// 			alert("play: " + file);
+			this.__play( file );
 		}
 		else {
-			console.log( "queue up a sound " + _file );
-			this.queue.push( _file );
-		}		
+// 			alert("queue: " + file);
+			this.queue.push( file );
+		}	
 	}
 	
-	/* events and triggers */	
-	this.audio.addEventListener("ended", this.onended.bind(this), false);
+	return SoundPlayer;
 	
-	/* private methods */	
-	this._play_sound = function( _file ){
-		this.ended = false;
-		this.audio.src = _file;
-		this.audio.play();
-	}
-	
-};
+})();

@@ -69,6 +69,8 @@ function SensorCheck(sensorRootObj) {
 	var promise = new Promise(function(resolve, reject) {
 
 		var runCheck = function (tries) {
+			
+			console.log("runCheck " + tries);
 
 			setTimeout(function() {
 

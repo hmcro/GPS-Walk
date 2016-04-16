@@ -1,0 +1,143 @@
+@import "reset";
+@import "typography";
+
+
+$orange: 		#f15a24;
+$mid-orange: 	#d84f2e;
+$dark-orange:	#c14629;
+$light-grey: 	#7f7f7f;
+$dark-grey: 	#333333;
+
+/* specific styles for participant app */
+
+html, body {
+	height: 100;
+}
+
+body {
+	background-color: $orange;
+	color: #fff;
+}
+
+a {
+	color: #fff;
+}
+
+input {
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	border: none;
+	box-sizing: border-box;
+	padding: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+input.button {
+	background-color: $dark-orange;
+	color: #fff;
+	letter-spacing: 1px;
+	font-weight: 700;
+}
+
+.view {
+	box-sizing: border-box;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+.view_wrapper {
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+/**
+	HEADER
+**/
+#header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 20px;
+	background-color: $mid-orange;
+	font-size: 12px;
+	line-height: 30px;
+	z-index: 9999;
+}
+
+#header #header_copy {
+	float: left;
+	margin-bottom: 0;
+}
+
+#header #header_info {
+	float:right;
+	text-align: right;
+	margin-bottom: 0;
+}
+
+
+/**
+	WELCOME
+**/
+#welcome {
+	box-sizing: border-box;
+	padding: 20px;
+	z-index: 999;
+	background-color: $orange;
+}
+
+#welcome header {
+	margin: 35px 0 60px 0;
+	text-align: center;
+}
+
+#welcome header img {
+	width: 75px;
+	height: 75px;
+}
+
+#welcome_animation {
+	display: none;
+}
+
+#welcome_animation li {
+	margin-bottom: 10px;
+}
+
+/**
+	MAPBOX
+**/
+#map {
+	z-index: 99;
+}
+
+.map_overlay {
+	position: absolute;
+	top: 0;
+	background-color: $orange;
+	margin: 10px;
+	padding: 10px;
+	box-sizing: border-box;	
+}
+
+#mapbox {
+	width: 100;
+	height: 100%;
+	z-index: -99;
+}
+
+
+/**
+	INFO
+**/
+#info {
+	padding: 20px;
+	display: none;
+	background-color: $orange;
+	z-index: 999;
+}
