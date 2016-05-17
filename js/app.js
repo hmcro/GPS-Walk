@@ -13,6 +13,7 @@ $(function(){
 	var mapbox;
 	var user_marker;
 	var markers;
+	var polyline;
 	var timerID;
 	var startTime;
 	var lastWaypointTime;
@@ -23,6 +24,14 @@ $(function(){
 	*/
 	if ( !localStorage.getItem("cid") ) {
 		console.log("new user");
+		
+		// check for CID in url
+		if ( location.search ) {
+			var cid = location.search.split('cid=')[1];
+			console.log("cid = " + cid);
+			$("input[name=CID]").val( cid );
+		}
+		
 	} else {
 		console.log("returning user");
 		$("input[name=CID]").val( localStorage.getItem("cid") );
@@ -110,7 +119,8 @@ $(function(){
 	*/
 	$.getJSON(JSON_WAYPOINTS_FILE, function( data ) {			
 		waypoints.setJSON(data);
-		$(".js-waypoints").text( waypoints.totalWaypoints() );
+		$(".js-waypoints").text( waypoints.totalWaypoints );
+		$(".js-messages").text( waypoints.totalStories );
 	});
 	
 	
@@ -216,7 +226,7 @@ $(function(){
 		*/		
 		$("#welcome").hide();
 		
-		
+// 		localStorage.setItem("currentWaypoint", -1);
 		/*
 			SETUP CURRENT MAP STATE
 		*/
@@ -242,7 +252,7 @@ $(function(){
 		
 		markers = [];
 		
-		var startMarker = new L.Marker(waypoints.getLatLng(0), {
+		var startMarker = new L.Marker(waypoints.getWaypoint(0).latlng, {
 			icon: L.icon({
 				iconUrl: 'img/marker-start.png',
 				iconSize: [30, 30]
@@ -256,8 +266,9 @@ $(function(){
 	function checkStartDistance(){
 		console.log("checkStartDistance");
 		
-		var dist = Math.floor( user_marker.getLatLng().distanceTo( waypoints.getLatLng(0) ) );
-		$(".js-distanceFrom").text( dist );
+		var dist = Math.floor( user_marker.getLatLng().distanceTo( waypoints.getWaypoint(0).latlng ) );
+// 		console.log("dist: " + dist);
+		$(".js-distanceTo").text( dist );
 		
 		if (dist <= DISTANCE_THRESHOLD) {
 			
@@ -275,39 +286,30 @@ $(function(){
 	}
 	
 	function loadWaypointMap(){
+// 		alert("loadWaypointMap");
 		
 		$("#map_start").hide();
 		$("#map_statistics").show();
 				
-		var n = localStorage.getItem( "currentWaypoint");
-		
-		console.log("currentWaypoint = " +  n );
-		
+
+		var n = localStorage.getItem( "currentWaypoint");		
+// 		alert("currentWaypoint = " +  n );
+
 		if ( n < 0 ) {
-			
-			console.log(">> play welcome");
-			
-			soundplayer.play( "audio/hmcro/1_Welcome.mp3" );
-						
-			localStorage.setItem("currentWaypoint", 0);
-			
-		}
-		else {	
-				
-			console.log(">> start from waypoint: " + n);
-			
-			waypoints.index = n;
-			
-			soundplayer.play( waypoints.data.waypoints[n-1].mp3 );
-			
+			n = 0;				
+			localStorage.setItem("currentWaypoint", 0);					
+		} else {
+			soundplayer.play( waypoints.getWaypoint(n).mp3 );
 		}
 		
+		
+	
 		$(".js-currentWaypoint").text(waypoints.index);
-		$(".js-messagePlay").text(waypoints.totalStories() - waypoints.getStories().length );
+		$(".js-messagePlay").text(waypoints.totalStories - waypoints.getStories().length );
 		
 		markers = [];
 		
-		var polyline = L.polyline([], {
+		polyline = L.polyline([], {
 			color: '#f15a24',
 			weight: 10,
 			opacity: 1.0
@@ -326,26 +328,24 @@ $(function(){
 			iconSize: [10, 10]
 		});
 		
-		// save the state
+
+// 		var wArr = waypoints.getWaypointsFrom(n);
 		var wArr = waypoints.getWaypoints();
+// 		alert("n = " + n + "wp = " + wArr.length);
 				
 		for (var i in wArr){
-			polyline.addLatLng( [ wArr[i].latitude, wArr[i].longitude ] );
+			polyline.addLatLng( wArr[i].latlng );
 		}
 
-		$(".js-messages").text( waypoints.totalStories() );
+		$(".js-messages").text( waypoints.totalStories );
 
 		var stories = waypoints.getStories();
 		
 		for (var s in stories) 
 	    {
-		    /* change the alpha based on type of story */
-		    console.log(stories[s].dir);
-		    
-		    switch (stories[s].dir) {
-			    
+		    // change the alpha based on type of story		    
+		    switch (stories[s].dir) {			    
 				case "adversity" :
-					console.log("adversity");
 					var m = L.marker([ stories[s].latitude, stories[s].longitude ], {
 						icon: 		yourMarker,
 						clickable: 	false,
@@ -361,7 +361,6 @@ $(function(){
 			    case "stretched" :			    
 			    case "hmcro" :
 			    default :
-				    console.log("other");
 				    var m = L.marker([ stories[s].latitude, stories[s].longitude ], {
 						icon: 		miscMarker,
 						clickable: 	false,
@@ -380,6 +379,7 @@ $(function(){
 			onTimerTick.call(this);
 		    
 		}, 1000);
+
 	}
 	
 	function checkStoryDistance(){
@@ -394,7 +394,7 @@ $(function(){
 	            // play story
 	            soundplayer.play( stories[s].mp3 );
 	            
-	            $(".js-messagePlay").text(waypoints.totalStories() - waypoints.getStories().length );
+	            $(".js-messagePlay").text(waypoints.totalStories - waypoints.getStories().length );
 	            
 	            // remove waypoints from array
 	            waypoints.removeStory(s);
@@ -404,22 +404,26 @@ $(function(){
 	
 	function checkWaypointDistance(){
 		
-		console.log("checkWaypointDistance");
-		
+		// get the distance from the next marker
 		var wp = localStorage.getItem("currentWaypoint");
-		var dist = Math.floor( user_marker.getLatLng().distanceTo( waypoints.getLatLng( wp ) ) );
+		var dist = Math.floor( user_marker.getLatLng().distanceTo( waypoints.getWaypoint( wp ).latlng ) );
 		
-		$(".js-distanceFrom").text( dist );
+// 		alert("wp:" + wp + ", " + dist + "<= " + DISTANCE_THRESHOLD);
+		
+		$(".js-distanceTo").text( dist );
 		
 		if (dist <= DISTANCE_THRESHOLD) {
 			console.log("close enough");
 			
+/* 			alert */(wp + "/" + waypoints.totalWaypoints);
+/* 			alert */("mp3:"+waypoints.getWaypoint(wp).mp3);
+					
 			// play sound
-			soundplayer.play( waypoints.getMp3( wp ), (wp>0) );
+			soundplayer.play( waypoints.getWaypoint(wp).mp3 );
 						
 			lastWaypointTime = new Date().getTime();
 			
-			if ( wp < waypoints.totalWaypoints()-1 ) {			
+			if ( wp < waypoints.totalWaypoints-1 ) {			
 				
 				// save in cookie to stop multiple calls
 				wp++;
@@ -430,7 +434,6 @@ $(function(){
 			else {
 				
 				// it's over
-				soundplayer.play( "audio/hmcro/21_Over.mp3", true );
 				
 				for (var m in markers){
 					mapbox.removeLayer(markers[m]);
@@ -444,6 +447,20 @@ $(function(){
 				
 			}
 		}
+		
+/*		// if we skip over markers...
+		var w = waypoints.getWaypoints();		
+		var i, latlng;
+		
+
+		for ( i = 0; i < w.length; i++) {
+			dist = Math.floor( user_marker.getLatLng().distanceTo( w[i].latlng ) );
+			
+			
+			
+		}
+*/
+		
 	}
 	
 	function onTimerTick(){
@@ -465,38 +482,60 @@ $(function(){
 	    if (waypoint_time_diff_min > 2 && waypointReminderIndex != wp) {
 	        waypointReminderIndex = wp;
 	        var mp3_file = "audio/hmcro/TimeKeeping_"+Math.floor(Math.random()*6.99)+".mp3";	
-	        soundplayer.play( mp3_file, true );
+	        soundplayer.play( mp3_file );
 	    }
 	}
 	
 	function getNameFromCID( cid ){
 		var users = {
-			"4755674":"Bentley", 
-			"4755675":"Vladimir", 
-			"4755676":"Annelise", 
-			"4755677":"Sam", 
-			"4755678":"Kim-Leigh", 
-			"4755679":"geoffrey", 
-			"4755672":"Janna", 
-			"4755671":"Chris", 
-			"4755669":"Cosimo", 
-			"4755667":"Joshua", 
-			"4755664":"Shamik", 
-			"4755662":"Ruko", 
-			"4755661":"Ivy", 
-			"4755660":"Brian", 
-			"4755659":"Thea", 
-			"4755658":"Ankkit", 
-			"4755657":"Nick", 
-			"4755656":"Joseph", 
-			"4755654":"Ted", 
-			"4755652":"Mette", 
-			"4755651":"Andrew", 
-			"4755650":"Naama", 
-			"4755649":"Lucie", 
-			"4755647":"Joseph", 
-			"4755646":"Nina", 
-			"4755645":"Charlotte"
+		"1234567":"Luke", 
+		"4755644":"Mikel", 
+		"4755643":"Debbie", 
+		"4755642":"Weiyin", 
+		"4755641":"Carla", 
+		"4755640":"Neba", 
+		"4755639":"Rodrigo", 
+		"4755680":"Sara", 
+		"4755645":"Charlotte", 
+		"4755646":"Nina", 
+		"4755647":"Joseph", 
+		"4755649":"Lucie", 
+		"4755684":"Alexander", 
+		"4755685":"Sam", 
+		"4755686":"Talal", 
+		"4755687":"Gareth", 
+		"4755650":"Naama", 
+		"4755651":"Andrew", 
+		"4755652":"Mette", 
+		"4755653":"Peter", 
+		"4755654":"Ted", 
+		"4755655":"Lluisa", 
+		"4755656":"Joseph", 
+		"4755657":"Nick", 
+		"4755658":"Ankkit", 
+		"4755659":"Thea", 
+		"4755660":"Brian", 
+		"4755661":"Ivy", 
+		"4755662":"Ruko", 
+		"4755663":"Kaidi", 
+		"4755664":"Shamik", 
+		"4755665":"emily", 
+		"4755667":"Joshua", 
+		"4755668":"Laura", 
+		"4755669":"Cosimo", 
+		"4755670":"Anastasia", 
+		"4755638":"Vanea", 
+		"4755671":"Chris", 
+		"4755672":"Janna", 
+		"4755679":"geoffrey", 
+		"4755678":"Kim-Leigh", 
+		"4755677":"Sam", 
+		"4755676":"Annelise", 
+		"4755675":"Vladimir", 
+		"4755681":"Amal", 
+		"4755682":"Kate", 
+		"4755683":"Noel", 
+		"4755688":"Sarah"
 		}
 		
 		var n = users[cid];
