@@ -42,7 +42,7 @@ var Compass = (function(){
 	
 	
 	Compass.prototype.stop = function(){
-		this.promise.stop();
+// 		this.promise.stop();
 	}
 	
 	return Compass;

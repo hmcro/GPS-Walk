@@ -25,21 +25,18 @@ var SoundPlayer = (function(){
 		this.audio.addEventListener("ended", this.__onended.bind(this), false);	
 	};
 	
-	SoundPlayer.prototype.play = function( file, force ){
+	SoundPlayer.prototype.play = function( file ){
 		
-		if (force == true ) {
-// 			alert("force play: " + file);
-			// play over the top
-			new Audio(file).play();
-		}
-		else if ( this.ended ) {
+// 		alert( "play:" + file );
+		
+		if ( this.ended ) {
 // 			alert("play: " + file);
 			this.__play( file );
 		}
 		else {
 // 			alert("queue: " + file);
 			this.queue.push( file );
-		}	
+		}
 	}
 	
 	return SoundPlayer;

@@ -9,14 +9,14 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="mobile-web-app-capable" content="yes">
 	
-		<title>GPS v2.5</title>
+		<title>HMCRO</title>
 		
 		<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
 		<link rel="icon" href="img/favicon.ico" />
 		<link rel="home" href="index.html" />
 		
 		<link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" />
-		<link rel="stylesheet" href="css/participant.css" />
+		<link rel="stylesheet" href="css/styles.css" />
 	
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -84,8 +84,8 @@
 		<section id="map" class="view">
 			
 <!-- 			<div id="map_notifications"></div> -->
-			<div class="map_overlay" id="map_start">Your personalised audio guide and localisation exam will begin at Angel station. You are <span class="js-distanceFrom">0</span>m from your start point.</div>	
-			<div class="map_overlay" id="map_statistics">Duration: <span class="js-duration">00:00</span><br/>Distance: <span class="js-distanceFrom">0</span>m<br/>Total: 2977.2m<br/>Messages: <span class="js-messagePlay">0</span>/<span class="js-messages">0</span></div>
+			<div class="map_overlay" id="map_start">Your personalised audio guide and localisation exam will begin at Angel station. You are <span class="js-distanceTo">0</span>m from your start point.</div>	
+			<div class="map_overlay" id="map_statistics">Duration: <span class="js-duration">00:00</span><br/>Distance from: <span class="js-distanceFrom">0</span>m<br/>Distance to: <span class="js-distanceTo">0</span>m<br/>Total: 2977.2m<br/>Messages: <span class="js-messagePlay">0</span>/<span class="js-messages">0</span></div>
 					
 			<div id="mapbox"></div>
 			
@@ -95,6 +95,7 @@
 			
 			<div class="view_wrapper">
 		
+				<p>Version: 2.2.4</p>
 				<p>Geolocation: <span id="js-geolocation"</span></p>
 				<p>Latitude: <span id="js-latitude"</span></p>
 				<p>Longitude: <span id="js-longitude"</span></p>
@@ -127,7 +128,7 @@
 		<script src="js/geolocation.js"></script>
 		<script src="js/waypoints.js"></script>
 		<script src="js/compass.js"></script>
-		<script src="js/participant.js"></script>
+		<script src="js/app.js"></script>
 	
 	</body>
 </html>
