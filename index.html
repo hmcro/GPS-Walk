@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Each citizen must complete their localisation tour</title>
+		<title>HM C.R.O.</title>
 
 		<meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -33,7 +33,6 @@
         <meta name="apple-mobile-web-app-title" content="">
 
 		<!-- Styles and design  -->
-		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="/css/app.css">
 		
 		<!-- Include Modernizer to detect browser features  -->
@@ -56,20 +55,20 @@
 
 		<div id="app">
 
-			<div class="welcome">
+			<div v-if="state == 'welcome'" class="welcome">
 
 				<h1>HM Citizen Rotation Office</h1>
 
 				<p>This tour has been generated automatically based on existing citizen profile data. By enrolling into the Citizen Rotation Office each citizen acknowledges that  all data recorded on any public  or private device, whilst inside  and travelling to and from assigned locations may be  used to improve their experience of the city.</p>
 				<p>Continue if you accept that apart from Google Analytics, no other personal data is recorded during your tour, everything is simulated.</p>
 
-				<button>Start real-time tour</button>
-				<button>See audio only</button>
-				<a href="#">Privacy</a>
+				<button v-on:click="state = 'requirements'">Start real-time tour</button>
+				<a href="https://audio.hmcro.org">See audio only</a>
+				<a v-on:click.stop="state = 'privacy'" href="#">Privacy</a>
 		
 			</div>
 
-			<div class="requirements">
+			<div v-if="state == 'requirements'" class="requirements">
 
 				<p>Real-time tour requirements:</p>
 
@@ -82,31 +81,34 @@
 					<li>You cannot use an incognito browser and must allow access to your location whilst using the app.</li>
 				</ul>
 
-				<button>I'm outside Angel Underground Station</button>
-				<button>Cancel</button>
+				<button v-on:click="state = 'map'">I'm outside Angel Underground Station</button>
+				<button v-on:click="state = 'welcome'">Cancel</button>
 		
 			</div>
 
-			<div class="map">
+			<div v-if="state == 'map'" class="map">
 
-				<h1>MAP</h1>
+				<a v-on:click.stop="state = 'welcome'">MAP</a>
+
+				<div class="player">
+					<h2>Playing {{audioName}}.mp3</h2>
+					<button v-on:click="toggleAudio()">
+						<span v-if="isPlaying">Stop</span>
+						<span v-else>Play</span>
+					</button>
+					{{currentTime}}s/{{totalTime}}s ({{progress}}%)
+				</div>
 
 			</div>
 
-			<div class="player">
-				<h2>Playing {{audioName}}.mp3</h2>
-				<button v-on:click="toggleAudio()">
-					<span v-if="isPlaying">Stop</span>
-					<span v-else>Play</span>
-				</button>
-				{{currentTime}}s/{{totalTime}}s ({{progress}}%)
-			</div>
+			<div v-if="state == 'privacy'" class="privacy">
+
+					<h1>Privacy policy</h1>
+	
+					<button v-on:click="state = 'welcome'">Accept</button>
 			
-			<ul>
-				<li v-for="file in files">
-					<a v-on:click="playAudio(file.name)" class="audioLink">{{file.name}}</a>
-				</li>
-			</ul>
+				</div>
+
 		</div>
 
 		<script src="js/app-min.js"></script>
