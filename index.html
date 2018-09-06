@@ -1,41 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
+
 	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="The HMCRO is currently accepting applications for the next round of citizenship exams. Selected participants will be expected to attend a mandatory localisation exam in London between now and June.">
-		<meta name="keywords" content="speculative design, critical design, future of government, research, design research, ethnography, performance, walk, gps, location, housing, accomodation, smart city, future city.">
-		<meta name="author" content="Luke Sturgeon">		
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-	
-		<title>HM Citizen Rotation Office</title>
+		<meta charset="UTF-8">
+
+		<title>Each citizen must complete their localisation tour</title>
+
+		<meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <meta http-equiv="cleartype" content="on">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<!-- Tile icons for iOS -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="img/touch/touch-icon-196x196.png">
+        <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+
+        <!-- Tile icon for Win8 -->
+        <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#222222">
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- For iOS web apps.  -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="">
+
+		<!-- Styles and design  -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="/css/app.css">
 		
-		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-		<link rel="icon" href="img/favicon.ico">
-		<link rel="home" href="index.html" />
-		<link rel="stylesheet" href="css/index.css">
-	
-		<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		
-		<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
-		
-	</head>
-	<body>
-		
-		<div id="homepage">
-			<img src="img/HMCRO_LOGO_WHITE.svg" alt="HM Citizen Rotation Office Logo" class="logo" />
-		</div>
-		
+		<!-- Include Modernizer to detect browser features  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+		<!-- Include vue.js   -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46847953-4"></script>
 		<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		
-		ga('create', 'UA-46847953-4', 'auto');
-		ga('send', 'pageview');		
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-46847953-4');
 		</script>
-	
+	</head>
+
+	<body>
+
+		<div id="app">
+
+			<div class="welcome">
+
+				<h1>HM Citizen Rotation Office</h1>
+
+				<p>This tour has been generated automatically based on existing citizen profile data. By enrolling into the Citizen Rotation Office each citizen acknowledges that  all data recorded on any public  or private device, whilst inside  and travelling to and from assigned locations may be  used to improve their experience of the city.</p>
+				<p>Continue if you accept that apart from Google Analytics, no other personal data is recorded during your tour, everything is simulated.</p>
+
+				<button>Start real-time tour</button>
+				<button>See audio only</button>
+				<a href="#">Privacy</a>
+		
+			</div>
+
+			<div class="requirements">
+
+				<p>Real-time tour requirements:</p>
+
+				<ul>
+
+					<li>In order to experience the real-time tour you must begin outside the Angel Underground Station.</li>
+					<li>You will be expected to follow the route generated for you.</li>
+					<li>The tour will terminate at the Barbican centre.</li>
+					<li>The real-time tour requires access to your location and internet access, so the correct audio files can play.</li>
+					<li>You cannot use an incognito browser and must allow access to your location whilst using the app.</li>
+				</ul>
+
+				<button>I'm outside Angel Underground Station</button>
+				<button>Cancel</button>
+		
+			</div>
+
+			<div class="map">
+
+				<h1>MAP</h1>
+
+			</div>
+
+			<div class="player">
+				<h2>Playing {{audioName}}.mp3</h2>
+				<button v-on:click="toggleAudio()">
+					<span v-if="isPlaying">Stop</span>
+					<span v-else>Play</span>
+				</button>
+				{{currentTime}}s/{{totalTime}}s ({{progress}}%)
+			</div>
+			
+			<ul>
+				<li v-for="file in files">
+					<a v-on:click="playAudio(file.name)" class="audioLink">{{file.name}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="js/app-min.js"></script>
+
 	</body>
+
 </html>
