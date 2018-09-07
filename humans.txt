@@ -3,13 +3,14 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Luke Sturgeon -- design & programming
 
 # THANKS
 
-    <name>
+    
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    jQuery, Modernizr, Mapbox
+	CodeKit
