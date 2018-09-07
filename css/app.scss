@@ -1,6 +1,180 @@
 @import "normalize";
 
+$padding: 1.5em;
+$border: 2px solid #ffffff;
+$shadow: -3px 4px #802100;
+
+/**
+# SHARED STYLES
+**/
+
+html, body {
+	height: 100vh;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #E9501E;
 	color: #ffffff;
+	font-weight: bold;
+}
+
+a {
+	color: inherit;
+}
+
+.logo {
+	max-width: 200px;
+}
+
+.button {
+	display: block;
+	background-color: #AF2C00;
+	border: none;
+	width: 100%;
+	margin: .2em 0;
+	padding: 15px;
+	border-radius: 5px;
+
+	&:disabled {
+		opacity: .5;
+	}
+}
+
+/**
+# NO JS TOGGLE VISIBILITY OF ERROR MESSAGES
+**/
+
+.no-js .welcome,
+.no-js .requirements,
+.no-js .privacy,
+.no-js .map {
+	display: none;
+}
+
+.js-error {
+	padding-top: 45vh;
+	text-align: center;
+}
+
+.js .js-error {
+	display: none;
+}
+
+/**
+# PAGE STYLES
+**/
+
+.welcome {
+	
+	height: 100vh;
+	padding: $padding;
+
+	.welcome-inner {
+		padding: $padding 0;
+		height: 100%;
+		border-top: $border;
+		border-bottom: $border;
+
+		.welcome-text {
+			margin-top: 3em;
+			width: 75%;
+		}
+
+		.welcome-buttons {
+			position: absolute;
+			left: $padding;
+			right: $padding;
+			bottom: $padding *2;
+
+			text-align: center;
+		}
+	}
+}
+
+.requirements {
+	background-color: #AF2C00;
+	padding: $padding;
+	height: 100vh;
+
+	.requirements-inner {
+		background-color: #E9501E;
+		border-radius: 5px;
+		padding: $padding;
+		height: 100%;
+		box-shadow: $shadow;
+
+		.requirements-list {
+			margin: 3em 0 0 0;
+			padding: 0;
+			list-style: none;
+			border-top: 1px solid #ffffff;
+
+			li {
+				border-bottom: 1px solid #ffffff;
+				padding: 10px 0;
+			}
+		}
+
+		.requirements-buttons {
+			position: absolute;
+			left: $padding*2;
+			right: $padding*2;
+			bottom: $padding*2;
+		}
+	}
+}
+
+.privacy {
+	height: 100vh;
+	padding: $padding;
+
+	.privacy-inner {
+		padding: $padding 0;
+		height: 100%;
+		border-top: $border;
+		border-bottom: $border;
+
+	}
+}
+
+.map {
+
+	.map-header {
+		padding: $padding;
+
+		.map-header-inner {
+			border-top: $border;
+			padding-top: $padding;
+		}
+	}
+}
+
+#map {
+	background: #AF2C00;
+	position:absolute; 
+	top:130px; 
+	bottom:0; 
+	width:100%; 
+}
+
+.marker {
+	background-image: url('/img/triangle-15.svg');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.user {
+	background-image: url('/img/citizen-marker.svg');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
 }

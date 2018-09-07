@@ -352,6 +352,132 @@ td,
 th {
   padding: 0; }
 
+/**
+# SHARED STYLES
+**/
+html, body {
+  height: 100vh; }
+
+* {
+  box-sizing: border-box; }
+
 body {
   background-color: #E9501E;
-  color: #ffffff; }
+  color: #ffffff;
+  font-weight: bold; }
+
+a {
+  color: inherit; }
+
+.logo {
+  max-width: 200px; }
+
+.button {
+  display: block;
+  background-color: #AF2C00;
+  border: none;
+  width: 100%;
+  margin: .2em 0;
+  padding: 15px;
+  border-radius: 5px; }
+  .button:disabled {
+    opacity: .5; }
+
+/**
+# NO JS TOGGLE VISIBILITY OF ERROR MESSAGES
+**/
+.no-js .welcome,
+.no-js .requirements,
+.no-js .privacy,
+.no-js .map {
+  display: none; }
+
+.js-error {
+  padding-top: 45vh;
+  text-align: center; }
+
+.js .js-error {
+  display: none; }
+
+/**
+# PAGE STYLES
+**/
+.welcome {
+  height: 100vh;
+  padding: 1.5em; }
+  .welcome .welcome-inner {
+    padding: 1.5em 0;
+    height: 100%;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff; }
+    .welcome .welcome-inner .welcome-text {
+      margin-top: 3em;
+      width: 75%; }
+    .welcome .welcome-inner .welcome-buttons {
+      position: absolute;
+      left: 1.5em;
+      right: 1.5em;
+      bottom: 3em;
+      text-align: center; }
+
+.requirements {
+  background-color: #AF2C00;
+  padding: 1.5em;
+  height: 100vh; }
+  .requirements .requirements-inner {
+    background-color: #E9501E;
+    border-radius: 5px;
+    padding: 1.5em;
+    height: 100%;
+    box-shadow: -3px 4px #802100; }
+    .requirements .requirements-inner .requirements-list {
+      margin: 3em 0 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid #ffffff; }
+      .requirements .requirements-inner .requirements-list li {
+        border-bottom: 1px solid #ffffff;
+        padding: 10px 0; }
+    .requirements .requirements-inner .requirements-buttons {
+      position: absolute;
+      left: 3em;
+      right: 3em;
+      bottom: 3em; }
+
+.privacy {
+  height: 100vh;
+  padding: 1.5em; }
+  .privacy .privacy-inner {
+    padding: 1.5em 0;
+    height: 100%;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff; }
+
+.map .map-header {
+  padding: 1.5em; }
+  .map .map-header .map-header-inner {
+    border-top: 2px solid #ffffff;
+    padding-top: 1.5em; }
+
+#map {
+  background: #AF2C00;
+  position: absolute;
+  top: 130px;
+  bottom: 0;
+  width: 100%; }
+
+.marker {
+  background-image: url("/img/triangle-15.svg");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.user {
+  background-image: url("/img/citizen-marker.svg");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer; }
