@@ -381,7 +381,8 @@ a {
   margin: .2em 0;
   padding: 15px;
   border-radius: 5px;
-  text-decoration: none; }
+  text-decoration: none;
+  text-align: center; }
   .button:disabled {
     opacity: .5; }
 

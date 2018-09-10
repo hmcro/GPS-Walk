@@ -46,8 +46,8 @@
 		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 
 		<!-- Include jQuery.js   -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -95,7 +95,7 @@
 							<a href="#requirements" class="button">Continue</a>
 						</div>
 						
-						<p>You agree to the <a v-on:click.stop="goto('privacy')" href="#">privacy policy</a>.</p>
+						<p>You agree to the <a href="#privacy">privacy policy</a>.</p>
 
 					</div>					
 
@@ -117,12 +117,9 @@
 					</ul>
 	
 					<div class="requirements-buttons">
-
-						<button v-on:click="goto('map')" class="button">Start audio tour</button>
-						<button v-on:click="goto('welcome')" class="button">Cancel</button>
-
-					</div>
-					
+						<a href="#map" class="button">Start audio tour</a>
+						<a href="#welcome" class="button">Cancel</a>
+					</div>					
 
 				</div>
 		
@@ -130,7 +127,7 @@
 
 			<div id="map">
 
-				<div v-if="isPlaying" class="player">
+				<div class="player">
 					<h2>Playing {{audioName}}.mp3</h2>
 					<button v-on:click="toggleAudio()">
 						<span v-if="isPlaying">Stop</span>
@@ -155,7 +152,7 @@
 
 					<h1>Privacy policy</h1>
 
-					<button v-on:click="goto('welcome')" class="button">Accept</button>
+					<a href="#welcome" class="button">Accept</a>
 
 				</div>
 		
