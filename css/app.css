@@ -365,7 +365,9 @@ body {
   background-color: #E9501E;
   color: #ffffff;
   font-size: 10pt;
-  font-weight: bold; }
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 a {
   color: inherit; }
@@ -411,8 +413,8 @@ a {
   #welcome .welcome-inner {
     padding: 1em 0;
     height: 100%;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff; }
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff; }
     #welcome .welcome-inner .welcome-text {
       margin-top: 3em;
       width: 75%; }
@@ -453,8 +455,8 @@ a {
   #privacy .privacy-inner {
     padding: 1em 0;
     height: 100%;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff; }
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff; }
 
 #map {
   background: #AF2C00; }
@@ -462,7 +464,7 @@ a {
     background: #E9501E;
     padding: 1em; }
     #map .map-header .map-header-inner {
-      border-top: 2px solid #ffffff;
+      border-top: 1px solid #ffffff;
       padding-top: 1em; }
   #map .player {
     z-index: 999;
