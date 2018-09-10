@@ -39,6 +39,7 @@ a {
 	margin: .2em 0;
 	padding: 15px;
 	border-radius: 5px;
+	text-decoration: none;
 
 	&:disabled {
 		opacity: .5;
@@ -49,19 +50,19 @@ a {
 # NO JS TOGGLE VISIBILITY OF ERROR MESSAGES
 **/
 
-.no-js .welcome,
-.no-js .requirements,
-.no-js .privacy,
-.no-js .map {
+.no-js #welcome,
+.no-js #requirements,
+.no-js #privacy,
+.no-js #map {
 	display: none;
 }
 
-.js-error {
+#js-error {
 	padding-top: 45vh;
 	text-align: center;
 }
 
-.js .js-error {
+.js #js-error {
 	display: none;
 }
 
@@ -69,7 +70,7 @@ a {
 # PAGE STYLES
 **/
 
-.welcome {
+#welcome {
 	
 	height: 100vh;
 	padding: $padding;
@@ -96,7 +97,7 @@ a {
 	}
 }
 
-.requirements {
+#requirements {
 	background-color: #AF2C00;
 	padding: $padding;
 	height: 100vh;
@@ -129,7 +130,7 @@ a {
 	}
 }
 
-.privacy {
+#privacy {
 	height: 100vh;
 	padding: $padding;
 
@@ -142,7 +143,7 @@ a {
 	}
 }
 
-.map {
+#map {
 	background: #AF2C00;
 
 	.map-header {
@@ -168,28 +169,28 @@ a {
 	}
 }
 
-#map {
+#mapbox {
 	background: #AF2C00;
 	position:absolute; 
 	top:90px; 
 	bottom:0; 
-	width:100%; 
-}
+	width:100%;
 
-.marker {
-	background-image: url('/img/triangle-15.svg');
-	background-size: cover;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-.user {
-	background-image: url('/img/citizen-marker.svg');
-	background-size: cover;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	cursor: pointer;
+	.marker {
+		background-image: url('/img/triangle-15.svg');
+		background-size: cover;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+	
+	.user {
+		background-image: url('/img/citizen-marker.svg');
+		background-size: cover;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
 }

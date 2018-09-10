@@ -45,8 +45,10 @@
 		<!-- Include mapbox.js   -->
 		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 
-		<!-- Include vue.js   -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- Include jQuery.js   -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+		crossorigin="anonymous"></script>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46847953-4"></script>
@@ -62,13 +64,13 @@
 
 		<div id="app">
 
-			<div class="js-error">
+			<div id="js-error">
 
 				<p>You must enable Javacript to view this website.</p>
 
 			</div>
 
-			<div v-if="state == 'welcome'" class="welcome">
+			<div id="welcome">
 
 				<div class="welcome-inner">
 
@@ -82,15 +84,15 @@
 
 					<div class="welcome-buttons">
 						
-						<div v-if="!audioSupported">
+						<div id="audioSupported">
 							<button class="button" disabled>Audio cannot play, please try a different device</button>
 						</div>
-						<div v-else-if="!geolocationSupported">
+						<div id="geolocationSupported">
 							<button class="button" disabled>Your location cannot be used</button>
-							<button v-on:click="link('https://audio.hmcro.org')" class="button">Audio only</button>
+							<a href="https://audio.hmcro.org" class="button">Audio only</a>
 						</div>					
-						<div v-else>
-							<button v-on:click="goto('requirements')" class="button">Continue</button>
+						<div>
+							<a href="#requirements" class="button">Continue</a>
 						</div>
 						
 						<p>You agree to the <a v-on:click.stop="goto('privacy')" href="#">privacy policy</a>.</p>
@@ -101,7 +103,7 @@
 		
 			</div>
 
-			<div v-if="state == 'requirements'" class="requirements">
+			<div id="requirements">
 
 				<div class="requirements-inner">
 
@@ -126,7 +128,7 @@
 		
 			</div>
 
-			<div v-if="state == 'map'" class="map">
+			<div id="map">
 
 				<div v-if="isPlaying" class="player">
 					<h2>Playing {{audioName}}.mp3</h2>
@@ -143,11 +145,11 @@
 					</div>					
 				</div>				
 
-				<div id='map'></div>				
+				<div id='mapbox'></div>				
 
 			</div>
 
-			<div v-if="state == 'privacy'" class="privacy">
+			<div id="privacy">
 
 				<div class="privacy-inner">
 
@@ -161,7 +163,7 @@
 
 		</div>
 
-		<script src="js/app-min.js"></script>
+		<script src="js/app2.js"></script>
 
 	</body>
 
