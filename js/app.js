@@ -21,7 +21,7 @@ var app = new Vue(
 
 	created: function(){
 
-		console.log('hmcro v 3.0.0');
+		console.log('hmcro v 3.0r2');
 
 		this.audio.addEventListener("timeupdate", this.onAudioUpdate);
 		this.audio.addEventListener("ended", this.onAudioEnded);
@@ -49,9 +49,9 @@ var app = new Vue(
 			if (newState == 'map' && !this.map ) {
 				this.initGeolocation();
 			}
-			else {
-				this.state = newState;
-			}
+
+			/** change the page */
+			this.state = newState;
 			
 		},
 
@@ -75,10 +75,6 @@ var app = new Vue(
 			console.log(this.longitude, this.latitude);
 
 			if (!this.map) {
-
-				/** Reveal the map page */
-				this.state = 'map';
-
 				this.initMap();
 			}
 			else {
