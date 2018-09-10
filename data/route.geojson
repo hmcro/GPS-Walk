@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "2_DuncanSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.177229642868042,
+          51.59247231736506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "4_Steps"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17633914947509763,
+          51.59286723451508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "6_GrahamStPark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17593413591384888,
+          51.593222157125474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "7_WalkAlong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1751697063446045,
+          51.592900560699746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "21_Over"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17843127250671387,
+          51.59163581484826
+        ]
+      }
+    }
+  ]
+}

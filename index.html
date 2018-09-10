@@ -120,22 +120,21 @@
 
 			<div id="map">
 
-				<div class="player">
-					<h2>Playing {{audioName}}.mp3</h2>
-					<button v-on:click="toggleAudio()">
-						<span v-if="isPlaying">Stop</span>
-						<span v-else>Play</span>
-					</button>
-					{{currentTime}}s/{{totalTime}}s ({{progress}}%)
+				<div id="player" class="player">
+					<p>Now playing</p>
+					<h1 class="audio-title"></h1>
+					<p class="audio-progress"><span class="audio-bar"></span></p>
 				</div>
 				
 				<div class="map-header">
 					<div class="map-header-inner">
 						<img src="/images/hmcro-logo.svg" alt="HM Citizen Rotation Office" class="logo">
 					</div>					
-				</div>				
+				</div>
 
-				<div id='mapbox'></div>				
+				<img class="loading-img" src="/images/Rolling-2.3s-200px.svg" alt="Loading map...">
+
+				<div id='mapbox'></div>
 
 			</div>
 

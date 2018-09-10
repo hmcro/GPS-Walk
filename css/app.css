@@ -467,6 +467,7 @@ a {
       border-top: 1px solid #ffffff;
       padding-top: 1em; }
   #map .player {
+    display: none;
     z-index: 999;
     position: fixed;
     bottom: 3em;
@@ -476,24 +477,47 @@ a {
     border-radius: 5px;
     box-shadow: -3px 4px #802100;
     padding: 1em; }
-
-#mapbox {
-  background: #AF2C00;
-  position: absolute;
-  top: 90px;
-  bottom: 0;
-  width: 100%; }
-  #mapbox .marker {
-    background-image: url("/images/triangle-15.svg");
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer; }
-  #mapbox .user {
-    background-image: url("/images/citizen-marker.svg");
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer; }
+    #map .player .audio-progress {
+      margin: 10px 0 5px 0;
+      width: 100%;
+      height: 12px;
+      background-color: #000000; }
+      #map .player .audio-progress .audio-bar {
+        display: block;
+        background-color: #ffffff;
+        height: 100%; }
+    #map .player p {
+      margin: 0; }
+    #map .player h1 {
+      margin: 0;
+      font-size: 1.5em;
+      font-weight: normal; }
+  #map .loading-img {
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    top: 50vh;
+    margin-top: -100px;
+    z-index: 99; }
+  #map #mapbox {
+    background: #AF2C00;
+    position: absolute;
+    top: 85px;
+    bottom: 0;
+    width: 100%; }
+    #map #mapbox .route {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #ffffff; }
+    #map #mapbox .marker {
+      background-image: url("/images/triangle-15.svg");
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; }
+    #map #mapbox .user {
+      background-image: url("/images/Ripple-4.7s-100px.svg");
+      background-size: cover;
+      width: 100px;
+      height: 100px; }
