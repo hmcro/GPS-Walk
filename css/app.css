@@ -364,13 +364,14 @@ html, body {
 body {
   background-color: #E9501E;
   color: #ffffff;
+  font-size: 10pt;
   font-weight: bold; }
 
 a {
   color: inherit; }
 
 .logo {
-  max-width: 200px; }
+  max-width: 150px; }
 
 .button {
   display: block;
@@ -404,9 +405,9 @@ a {
 **/
 .welcome {
   height: 100vh;
-  padding: 1.5em; }
+  padding: 1em; }
   .welcome .welcome-inner {
-    padding: 1.5em 0;
+    padding: 1em 0;
     height: 100%;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff; }
@@ -415,19 +416,19 @@ a {
       width: 75%; }
     .welcome .welcome-inner .welcome-buttons {
       position: absolute;
-      left: 1.5em;
-      right: 1.5em;
-      bottom: 3em;
+      left: 1em;
+      right: 1em;
+      bottom: 2em;
       text-align: center; }
 
 .requirements {
   background-color: #AF2C00;
-  padding: 1.5em;
+  padding: 1em;
   height: 100vh; }
   .requirements .requirements-inner {
     background-color: #E9501E;
     border-radius: 5px;
-    padding: 1.5em;
+    padding: 1em;
     height: 100%;
     box-shadow: -3px 4px #802100; }
     .requirements .requirements-inner .requirements-list {
@@ -440,29 +441,42 @@ a {
         padding: 10px 0; }
     .requirements .requirements-inner .requirements-buttons {
       position: absolute;
-      left: 3em;
-      right: 3em;
-      bottom: 3em; }
+      left: 2em;
+      right: 2em;
+      bottom: 2em; }
 
 .privacy {
   height: 100vh;
-  padding: 1.5em; }
+  padding: 1em; }
   .privacy .privacy-inner {
-    padding: 1.5em 0;
+    padding: 1em 0;
     height: 100%;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff; }
 
-.map .map-header {
-  padding: 1.5em; }
-  .map .map-header .map-header-inner {
-    border-top: 2px solid #ffffff;
-    padding-top: 1.5em; }
+.map {
+  background: #AF2C00; }
+  .map .map-header {
+    background: #E9501E;
+    padding: 1em; }
+    .map .map-header .map-header-inner {
+      border-top: 2px solid #ffffff;
+      padding-top: 1em; }
+  .map .player {
+    z-index: 999;
+    position: fixed;
+    bottom: 3em;
+    left: 1em;
+    right: 1em;
+    background: #E9501E;
+    border-radius: 5px;
+    box-shadow: -3px 4px #802100;
+    padding: 1em; }
 
 #map {
   background: #AF2C00;
   position: absolute;
-  top: 130px;
+  top: 90px;
   bottom: 0;
   width: 100%; }
 

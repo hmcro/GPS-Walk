@@ -128,15 +128,6 @@
 
 			<div v-if="state == 'map'" class="map">
 
-				<div class="map-header">
-					<div class="map-header-inner">
-						<img src="/img/hmcro-logo.svg" alt="HM Citizen Rotation Office" class="logo">
-					</div>					
-				</div>
-				
-
-				<div id='map'></div>
-
 				<div v-if="isPlaying" class="player">
 					<h2>Playing {{audioName}}.mp3</h2>
 					<button v-on:click="toggleAudio()">
@@ -145,6 +136,14 @@
 					</button>
 					{{currentTime}}s/{{totalTime}}s ({{progress}}%)
 				</div>
+				
+				<div class="map-header">
+					<div class="map-header-inner">
+						<img src="/img/hmcro-logo.svg" alt="HM Citizen Rotation Office" class="logo">
+					</div>					
+				</div>				
+
+				<div id='map'></div>				
 
 			</div>
 

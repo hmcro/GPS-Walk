@@ -1,6 +1,6 @@
 @import "normalize";
 
-$padding: 1.5em;
+$padding: 1em;
 $border: 2px solid #ffffff;
 $shadow: -3px 4px #802100;
 
@@ -19,6 +19,7 @@ html, body {
 body {
 	background-color: #E9501E;
 	color: #ffffff;
+	font-size: 10pt;
 	font-weight: bold;
 }
 
@@ -27,7 +28,7 @@ a {
 }
 
 .logo {
-	max-width: 200px;
+	max-width: 150px;
 }
 
 .button {
@@ -142,8 +143,10 @@ a {
 }
 
 .map {
+	background: #AF2C00;
 
 	.map-header {
+		background: #E9501E;
 		padding: $padding;
 
 		.map-header-inner {
@@ -151,12 +154,24 @@ a {
 			padding-top: $padding;
 		}
 	}
+
+	.player {
+		z-index: 999;
+		position: fixed;
+		bottom: $padding*3;
+		left: $padding;
+		right: $padding;
+		background: #E9501E;
+		border-radius: 5px;
+		box-shadow: $shadow;
+		padding: $padding;
+	}
 }
 
 #map {
 	background: #AF2C00;
 	position:absolute; 
-	top:130px; 
+	top:90px; 
 	bottom:0; 
 	width:100%; 
 }

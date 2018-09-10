@@ -23,8 +23,10 @@ var app = new Vue(
 
 		console.log('hmcro v 3.0r2');
 
+		window.addEventListener("hashchange", this.hashChanged);
+
 		this.audio.addEventListener("timeupdate", this.onAudioUpdate);
-		this.audio.addEventListener("ended", this.onAudioEnded);
+		this.audio.addEventListener("ended", this.onAudioStopped);
 		this.audio.addEventListener("pause", this.onAudioStopped);
 		this.audio.addEventListener("play", this.onAudioStarted);
 
@@ -43,6 +45,10 @@ var app = new Vue(
 	},
 
 	methods:{
+
+		onHashChanged: function( event ){
+			console.log( event );
+		},
 
 		goto: function(newState){
 
@@ -75,7 +81,10 @@ var app = new Vue(
 			console.log(this.longitude, this.latitude);
 
 			if (!this.map) {
+
 				this.initMap();
+
+				this.playAudio( "1_Welcome" );
 			}
 			else {
 				/* update the position of the user */
@@ -169,6 +178,7 @@ var app = new Vue(
 		/* AUDIO STUFF */
 
 		playAudio: function(file){
+			console.log("playAudio: " + file);
 			this.audioName = file;
 			this.audio.src = "/audio/"+file+".mp3";
 			this.audio.play();
@@ -188,6 +198,8 @@ var app = new Vue(
 		},
 
 		onAudioStarted: function(){
+			console.log("onAudioStarted");
+			console.log(this);
 			this.isPlaying = true;
 		},
 
