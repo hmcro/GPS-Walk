@@ -21,7 +21,7 @@ var app = new Vue(
 
 	created: function(){
 
-		console.log('hmcro v 3.0r2');
+		console.log('hmcro v 3.0r3');
 
 		window.addEventListener("hashchange", this.hashChanged);
 
