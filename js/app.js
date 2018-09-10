@@ -43,10 +43,11 @@ var app = new Vue(
 
 		goto: function(newState){
 
-			this.state = newState;
-
 			if (newState == 'map' && !this.map ) {
 				this.initGeolocation();
+			}
+			else {
+				this.state = newState;
 			}
 			
 		},
@@ -100,22 +101,7 @@ var app = new Vue(
 				});
 
 
-				// var stories = waypoints.getStories();
-		
-				// for (var s in stories) {
-					
-				// 	var dist = user_marker.getLatLng().distanceTo( [stories[s].latitude, stories[s].longitude] );
-			
-				// 	if ( dist <= DISTANCE_THRESHOLD ) {
-				// 		// play story
-				// 		soundplayer.play( stories[s].mp3 );
-						
-				// 		$(".js-messagePlay").text(waypoints.totalStories() - waypoints.getStories().length );
-						
-				// 		// remove waypoints from array
-				// 		waypoints.removeStory(s);
-				// 	}
-				// }
+				// NEED TO REMOVE THE STORY FROM ARRAY
 			}
 		},
 
@@ -172,6 +158,9 @@ var app = new Vue(
 				/* listen for geolocation updates and move the map */
 				_this.geolocationId = navigator.geolocation.watchPosition(_this.onGeolocationSuccess, _this.onGeolocationError, _this.geolocationSettings);
 
+
+				/** Reveal the map page */
+				this.state = 'map';
 			});			
 
 		},
