@@ -121,6 +121,9 @@ var app = new Vue(
 
 			console.log("map init");
 
+			/** Reveal the map page */
+			this.state = 'map';
+
 			/* will initialise the mapbox */
 			mapboxgl.accessToken = 'pk.eyJ1IjoibHVrZXN0dXJnZW9uIiwiYSI6ImNpazcwenlzYjAwenZpZm0yZGVtOXpzNGoifQ.qBHqidaLVWQtIEu09uhSkg';
 			this.map = new mapboxgl.Map({
@@ -158,9 +161,6 @@ var app = new Vue(
 				/* listen for geolocation updates and move the map */
 				_this.geolocationId = navigator.geolocation.watchPosition(_this.onGeolocationSuccess, _this.onGeolocationError, _this.geolocationSettings);
 
-
-				/** Reveal the map page */
-				this.state = 'map';
 			});			
 
 		},
