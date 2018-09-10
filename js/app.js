@@ -120,7 +120,13 @@ var app = new Vue(
 		},
 
 		onGeolocationError:function(err){
-			console.warn('ERROR('+err.code+'): ' + err.message);
+			if (err.code == 1) {
+				alert("Location access is denied. Use your phone's settings to enable.");
+			}
+			else {
+				console.warn('ERROR('+err.code+'): ' + err.message);
+				alert( err.message );
+			}			
 		},
 
 		/* MAPBOX STUFF */
