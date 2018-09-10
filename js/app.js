@@ -11,6 +11,7 @@ var app = new Vue(
 		},
 		geolocationId: null,
 		map: null,
+		userMarker: null,
 		audio: new Audio(),
 		audioName: "",
 		currentTime: 0,
@@ -27,24 +28,12 @@ var app = new Vue(
 		/* LOAD & PARSE THE GEOSJON */
 		var _this = this;
 		var xobj = new XMLHttpRequest();
+		
 		xobj.overrideMimeType("application/json");
-		xobj.open('GET', 'https://rawgit.com/hmcro/Maps/master/test-n20sx.geojson', true);
+		xobj.open('GET', 'https://raw.githubusercontent.com/hmcro/Maps/master/test-n20sx.geojson', true);
 		xobj.onreadystatechange = function () {
 			if (xobj.readyState == 4 && xobj.status == "200") {
 				_this.markers = JSON.parse(xobj.responseText);
-				// var featureCollection = JSON.parse(xobj.responseText).features;
-				// var arr = new Array();
-
-				// for (var n in featureCollection) {
-				// 	arr.push({
-				// 		latitude: featureCollection[n]['geometry']['coordinates'][0],
-				// 		longitude: featureCollection[n]['geometry']['coordinates'][1],
-				// 		mp3: featureCollection[n]['properties']['mp3']
-				// 	});
-				// 	// console.log(featureCollection[n]);
-				// }
-
-				// _this.markers = arr;
 			}
 		};
 		xobj.send(null);
@@ -75,18 +64,58 @@ var app = new Vue(
 		},
 
 		onGeolocationSuccess: function(pos){
-			
+
 			this.latitude = pos.coords.latitude;
 			this.longitude = pos.coords.longitude;
 
-			console.log(this.latitude, this.longitude);
+			console.log(this.longitude, this.latitude);
 
 			if (!this.map) {
 				this.initMap();
 			}
 			else {
+				/* update the position of the user */
+				if (this.userMarker) {
+					this.userMarker.setLngLat([this.longitude, this.latitude]);
+				}
+
 				/* slide the map to the next position */
-				// console.log(this.markers);
+				this.map.panTo([this.longitude, this.latitude]);
+				
+				/* check the distance between all stories */
+				var _this = this;
+				this.markers['features'].forEach(function(marker) {
+
+					/* measure the distance between the user position and each marker position */
+					var from = turf.point([_this.longitude, _this.latitude]);
+					var to = turf.point([marker.geometry.coordinates[0], marker.geometry.coordinates[1]]);
+
+					/* convert km to nearest metre */				
+					var distance = Math.floor( turf.distance(from, to) * 1000 );
+
+					if ( distance <= 20 ) {
+						_this.playAudio( marker.properties.mp3 );
+						alert("play " + marker.properties.mp3 );
+					}
+				});
+
+
+				// var stories = waypoints.getStories();
+		
+				// for (var s in stories) {
+					
+				// 	var dist = user_marker.getLatLng().distanceTo( [stories[s].latitude, stories[s].longitude] );
+			
+				// 	if ( dist <= DISTANCE_THRESHOLD ) {
+				// 		// play story
+				// 		soundplayer.play( stories[s].mp3 );
+						
+				// 		$(".js-messagePlay").text(waypoints.totalStories() - waypoints.getStories().length );
+						
+				// 		// remove waypoints from array
+				// 		waypoints.removeStory(s);
+				// 	}
+				// }
 			}
 		},
 
@@ -130,7 +159,7 @@ var app = new Vue(
 				el.className = 'user';
 
 				// make a marker for each feature and add to the map
-				new mapboxgl.Marker(el)
+				_this.userMarker = new mapboxgl.Marker(el)
 				.setLngLat([_this.longitude,_this.latitude])
 				.addTo(_this.map);
 
