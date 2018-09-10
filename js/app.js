@@ -75,6 +75,10 @@ var app = new Vue(
 			console.log(this.longitude, this.latitude);
 
 			if (!this.map) {
+
+				/** Reveal the map page */
+				this.state = 'map';
+
 				this.initMap();
 			}
 			else {
@@ -123,9 +127,7 @@ var app = new Vue(
 		initMap: function() {
 
 			console.log("map init");
-
-			/** Reveal the map page */
-			this.state = 'map';
+			console.log(this);
 
 			/* will initialise the mapbox */
 			mapboxgl.accessToken = 'pk.eyJ1IjoibHVrZXN0dXJnZW9uIiwiYSI6ImNpazcwenlzYjAwenZpZm0yZGVtOXpzNGoifQ.qBHqidaLVWQtIEu09uhSkg';
