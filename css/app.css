@@ -484,14 +484,14 @@ a {
   bottom: 0;
   width: 100%; }
   #mapbox .marker {
-    background-image: url("/img/triangle-15.svg");
+    background-image: url("/images/triangle-15.svg");
     background-size: cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     cursor: pointer; }
   #mapbox .user {
-    background-image: url("/img/citizen-marker.svg");
+    background-image: url("/images/citizen-marker.svg");
     background-size: cover;
     width: 50px;
     height: 50px;
