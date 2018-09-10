@@ -20,6 +20,9 @@ var app = new Vue(
 	},
 
 	created: function(){
+
+		console.log('hmcro v 3.0.0');
+
 		this.audio.addEventListener("timeupdate", this.onAudioUpdate);
 		this.audio.addEventListener("ended", this.onAudioEnded);
 		this.audio.addEventListener("pause", this.onAudioStopped);
