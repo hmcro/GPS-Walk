@@ -1,0 +1,236 @@
+@import "normalize";
+
+$padding: 1em;
+$border: 1px solid #ffffff;
+$shadow: -3px 4px #802100;
+
+/**
+# SHARED STYLES
+**/
+
+html, body {
+	height: 100vh;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #E9501E;
+	color: #ffffff;
+	font-size: 10pt;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	color: inherit;
+}
+
+.logo {
+	max-width: 150px;
+}
+
+.button {
+	display: block;
+	background-color: #AF2C00;
+	border: none;
+	width: 100%;
+	margin: .2em 0;
+	padding: 15px;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
+
+	&:disabled {
+		opacity: .5;
+	}
+}
+
+/**
+# NO JS TOGGLE VISIBILITY OF ERROR MESSAGES
+**/
+
+.no-js #welcome,
+.no-js #requirements,
+.no-js #privacy,
+.no-js #map {
+	display: none;
+}
+
+#js-error {
+	padding-top: 45vh;
+	text-align: center;
+}
+
+.js #js-error {
+	display: none;
+}
+
+/**
+# PAGE STYLES
+**/
+
+#welcome {
+	
+	height: 100vh;
+	padding: $padding;
+
+	.welcome-inner {
+		padding: $padding 0;
+		height: 100%;
+		border-top: $border;
+		border-bottom: $border;
+
+		.welcome-text {
+			margin-top: 3em;
+			width: 75%;
+		}
+
+		.welcome-buttons {
+			position: absolute;
+			left: $padding;
+			right: $padding;
+			bottom: $padding *2;
+
+			text-align: center;
+		}
+	}
+}
+
+#requirements {
+	background-color: #AF2C00;
+	padding: $padding;
+	height: 100vh;
+
+	.requirements-inner {
+		background-color: #E9501E;
+		border-radius: 5px;
+		padding: $padding;
+		height: 100%;
+		box-shadow: $shadow;
+
+		.requirements-list {
+			margin: 3em 0 0 0;
+			padding: 0;
+			list-style: none;
+			border-top: 1px solid #ffffff;
+
+			li {
+				border-bottom: 1px solid #ffffff;
+				padding: 10px 0;
+			}
+		}
+
+		.requirements-buttons {
+			position: absolute;
+			left: $padding*2;
+			right: $padding*2;
+			bottom: $padding*2;
+		}
+	}
+}
+
+#privacy {
+	height: 100vh;
+	padding: $padding;
+
+	.privacy-inner {
+		padding: $padding 0;
+		height: 100%;
+		border-top: $border;
+		border-bottom: $border;
+
+	}
+}
+
+#map {
+	background: #AF2C00;
+
+	.map-header {
+		background: #E9501E;
+		padding: $padding;
+
+		.map-header-inner {
+			border-top: $border;
+			padding-top: $padding;
+		}
+	}
+
+	.player {
+		display: none;
+		z-index: 999;
+		position: fixed;
+		bottom: $padding*3;
+		left: $padding;
+		right: $padding;
+		background: #E9501E;
+		border-radius: 5px;
+		box-shadow: $shadow;
+		padding: $padding;
+
+		.audio-progress {
+			margin: 10px 0 5px 0;
+			width: 100%;
+			height: 12px;
+			background-color: #000000;
+
+			.audio-bar {
+				display: block;
+				background-color: #ffffff;
+				height: 100%;
+			}
+		}
+
+		p {
+			margin: 0;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 1.5em;
+			font-weight: normal;
+		}
+	}
+	
+	.loading-img {
+		position: absolute;
+		left: 50%;
+		margin-left: -100px;
+		top: 50vh;
+		margin-top: -100px;
+		z-index: 99;
+	}
+
+	#mapbox {
+		background: #AF2C00;
+		position:absolute; 
+		top:85px; 
+		bottom:0; 
+		width:100%;
+	
+		.route {
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background-color: #ffffff;
+		}
+	
+		.marker {
+			background-image: url('/images/triangle-15.svg');
+			background-size: cover;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+		}
+		
+		.user {
+			background-image: url('/images/Ripple-4.7s-100px.svg');
+			background-size: cover;
+			width: 100px;
+			height: 100px;
+		}
+	}
+}

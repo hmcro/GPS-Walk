@@ -1,0 +1,252 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "2_DuncanSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10524988174438477,
+          51.533939999119276
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "3_RegentsCanal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10308802,
+          51.533299
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "4_Steps"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10058820247650146,
+          51.53277872874585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "5_GrahamSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10023146867752075,
+          51.53267361229302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "6_GrahamStPark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09890913963317871,
+          51.531952807220335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "7_WalkAlong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09848803281784058,
+          51.53200453203854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "8_IslingtonClub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09803742170333862,
+          51.53151064105323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "9_RejoinGrahamSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09797036647796631,
+          51.53115523645466
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "10_CentralSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09741246700286864,
+          51.52994383655451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "11_LeverSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09680360555648802,
+          51.52709208061195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "12_IronMongerRd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09475171566009521,
+          51.5273056764788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "13_Straight"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09416162967681883,
+          51.52624436213557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "14_StLukes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09386122226715088,
+          51.525588537604285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "15_HelmetRow"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.094432532787323,
+          51.525418322059814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "16_WhiteCrossSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09420186281204224,
+          51.524685720443955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "17_WhiteCrossSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09326040744781494,
+          51.52354257137086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "18_Ramp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09243160486221313,
+          51.52134297169316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "19_Skywalk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09261935949325562,
+          51.52111933421289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mp3": "21_Over"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09304046630859375,
+          51.52056023570747
+        ]
+      }
+    }
+  ]
+}
