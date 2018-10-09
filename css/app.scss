@@ -19,7 +19,7 @@ html, body {
 body {
 	background-color: #E9501E;
 	color: #ffffff;
-	font-size: 10pt;
+	font-size: 8pt;
 	font-weight: bold;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -73,16 +73,46 @@ a {
 # PAGE STYLES
 **/
 
+.page-with-borders {
+
+	&::before {
+		position: fixed;
+		left: $padding;
+		right: $padding;
+		top: 0;
+		height: $padding;
+		display: block;
+		content: "";
+		border-bottom: 1px solid #ffffff;
+		background-color: #E9501E;
+		z-index: 999;
+	}
+
+	&::after {
+		position: fixed;
+		left: $padding;
+		right: $padding;
+		bottom: 0;
+		height: $padding;
+		display: block;
+		content: "";
+		border-top: 1px solid #ffffff;
+		background-color: #E9501E;
+		z-index: 999;
+	}
+}
+
 #welcome {
 	
-	height: 100vh;
+	min-height: 100vh;
 	padding: $padding;
+	// padding-bottom: $padding * 10;
 
 	.welcome-inner {
-		padding: $padding 0;
+		padding: $padding 0 0 0;
 		height: 100%;
-		border-top: $border;
-		border-bottom: $border;
+		// border-top: $border;
+		// border-bottom: $border;
 
 		.welcome-text {
 			margin-top: 3em;
@@ -134,14 +164,15 @@ a {
 }
 
 #privacy {
-	height: 100vh;
+	min-height: 100vh;
 	padding: $padding;
+	padding-bottom: $padding * 2;
 
 	.privacy-inner {
-		padding: $padding 0;
-		height: 100%;
-		border-top: $border;
-		border-bottom: $border;
+		// padding: $padding 0 $padding 0;
+		// height: 100%;
+		// border-top: $border;
+		// border-bottom: $border;
 
 	}
 
@@ -215,7 +246,7 @@ a {
 	#mapbox {
 		background: #AF2C00;
 		position:absolute; 
-		top:85px; 
+		top:80px; 
 		bottom:0; 
 		width:100%;
 	
