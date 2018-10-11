@@ -244,7 +244,7 @@ var app = {
 				// remove the item from the array
 				app.markers.splice(i, 1);
 
-				alert("play " + marker.mp3 );
+				// alert("play " + marker.mp3 );
 			}
 		}
 	},
