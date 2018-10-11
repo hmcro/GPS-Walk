@@ -9,13 +9,14 @@ var app = {
 	route: [],
 	userMarker: null,
 	timeKeepingTimer: null,
+	iOS: !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform),
 	
     init: function( settings ) {
         app.config = {
             geolocationSettings: {
 				enableHighAccuracy: false, 
-				maximumAge        : 0, 
-				timeout           : 20000
+				maximumAge        : 75000, 
+				timeout           : 30000
 			},
 			markersUrl: '/data/markers.geojson',
 			routeUrl: '/data/route.geojson',
@@ -53,7 +54,15 @@ var app = {
 				app.config.geolocationSettings);
 
 			app.goto('#map');
-			app.playAudio('1_Welcome', true);
+
+			// detect if it's IOS and play appropriate audio
+			if (app.iOS) {
+				app.playAudio('1_Welcome_IOS', true);
+			}
+			else {
+				app.playAudio('1_Welcome', true);
+			}
+			
 		});
 
 		$('a[href="#welcome"]').click(function(){
@@ -165,6 +174,11 @@ var app = {
 				var el = document.createElement('div');
 				el.className = 'marker';
 
+				el.addEventListener('click', function() { 
+					console.log(marker);
+					app.playAudio(marker.mp3);
+				}); 
+
 				// make a marker for each feature and add to the map
 				new mapboxgl.Marker(el)
 				.setLngLat(marker.lngLat)
@@ -187,7 +201,7 @@ var app = {
 				app.geolocationSettings
 			);
 
-		});		
+		});
 		
 	},
 
@@ -218,8 +232,12 @@ var app = {
 		if (error.code == 1) {
 			alert("Location access is denied. Use your phone's settings to enable.");
 		}
+		if (error.code == 2) {
+			alert("Position is unavailable at this time.");
+		}
 		else {
 			console.warn('ERROR('+error.code+'): ' + error.message);
+			console.log(error);
 			alert( error.message );
 		}	
 	},
@@ -322,7 +340,7 @@ var app = {
 		$('#player').hide();
 
 		// restart the timekeeping player
-		timeKeepingTimer = setInterval(app.onTimeKeeping, 20000);
+		app.timeKeepingTimer = setInterval(app.onTimeKeeping, 1000*60*2);
 	},
 
 	onTimeKeeping: function() {
