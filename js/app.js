@@ -22,7 +22,7 @@ var app = {
 			routeUrl: '/data/route.geojson',
 			mapboxUrl: 'mapbox://styles/lukesturgeon/cjlrt20fu8i3z2spjnowdy5ae',
 			audioDistance: 13,
-			timeKeeping: 1000 * 60 * 1
+			timeKeeping: 1000 * 60 * 2
         };
  
         // Allow overriding the default config
@@ -73,11 +73,14 @@ var app = {
 			app.goto('#privacy');
 		});
 
-		// setup audio player
+		// setup audio players
         app.audio.addEventListener("timeupdate", app.onAudioUpdate);
 		app.audio.addEventListener("ended", app.onAudioStopped);
 		app.audio.addEventListener("pause", app.onAudioStopped);
 		app.audio.addEventListener("play", app.onAudioStarted);
+
+		app.timeKeepingAudio.addEventListener("play", app.onTimeKeepingAudioStarted);
+		app.timeKeepingAudio.addEventListener("ended", app.onAudioStopped);
 
 		// load data
 		$.ajax({
@@ -208,7 +211,7 @@ var app = {
 	onGeolocationSuccess: function( pos ) {
 		app.lngLat[0] = pos.coords.longitude;
 		app.lngLat[1] = pos.coords.latitude;
-		console.log(app.lngLat);
+		// console.log(app.lngLat);
 
 		if ( !app.mapbox ) {
 			app.setupMapbox();
@@ -325,6 +328,7 @@ var app = {
 		console.log("onAudioStarted");
 
 		// stop the reminder timer
+		console.log('Stop timekeeping.');
 		clearInterval(app.timeKeepingTimer);
 
 		//reset the bar
@@ -333,6 +337,15 @@ var app = {
 		// show the player
 		$('#player').show();
 	},
+
+	onTimeKeepingAudioStarted: function() {
+		app.isAudioPlaying = true;
+		console.log("onTimeKeepingAudioStarted");
+
+		// stop the reminder timer
+		console.log('Stop timekeeping.');
+		clearInterval(app.timeKeepingTimer);
+	},
 	
 	onAudioStopped: function(){
 		app.isAudioPlaying = false;
@@ -340,7 +353,8 @@ var app = {
 		$('#player').hide();
 
 		// restart the timekeeping player
-		app.timeKeepingTimer = setInterval(app.onTimeKeeping, 1000*60*2);
+		console.log('Start timekeeping.');
+		app.timeKeepingTimer = setInterval(app.onTimeKeeping, app.config.timeKeeping);
 	},
 
 	onTimeKeeping: function() {
