@@ -450,7 +450,7 @@ a {
 #requirements {
   background-color: #AF2C00;
   padding: 1em;
-  height: 100vh; }
+  min-height: 100vh; }
   #requirements .requirements-inner {
     background-color: #E9501E;
     border-radius: 5px;
@@ -469,10 +469,7 @@ a {
         border-bottom: 1px solid #ffffff;
         padding: 10px 0; }
     #requirements .requirements-inner .requirements-buttons {
-      position: absolute;
-      left: 2em;
-      right: 2em;
-      bottom: 2em; }
+      padding-top: 2em; }
 
 #privacy {
   min-height: 100vh;
