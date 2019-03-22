@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *;"> -->
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/mapbox.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>HMCRO</title>
+  </head>
+
+  <body>
+
+    <div id="info-buttons">
+      <a class="open-button"><img src="img/InfoIcon.svg" alt="Info" /></a>
+      <a class="close-button"><img src="img/CloseIcon.svg" alt="Info" /></a>
+    </div>
+
+    <div class="view" id="intro-view">
+      <img src="img/Logo.svg" alt="Citizen Rotation Office" />
+      <h1>Citizen Rotation Office</h1>
+      <form id="intro-form">
+        <input type="text" name="name" placeholder="Please enter a name" id="intro-name">
+        <input type="submit" value="BEGIN LOCALISATION" id="intro-submit">
+      </form>
+    </div>
+
+    <div class="view" id="loading-view">
+      <img src="img/Logo.svg" alt="Citizen Rotation Office" />
+      <h1>Building your guide...</h1>
+      <form id="loading-form">
+        <input type="submit" value="SKIP">
+      </form>
+    </div>
+
+    <div class="view" id="map-view">
+      <h1>MAP CONTROLS</h1>
+    </div>
+    <div id="map"></div>
+
+    <div class="view" id="info-view">
+      <h1>Information</h1>
+      <p>This mobile application is part of an immersive, speculative design proposal and research project by Luke Sturgeon.</p>
+      <p>The Citizen Rotation Office is an uncomfortable fictional service and future scenario, designed as a provocation for in-context debate. Participants discuss their concerns for our cities, homes, communities, and the role of technology and data in the future.</p>
+
+      <input type="button" name="name" value="VISIT WEBSITE" onclick="window.open('http://hmcro.org', '_system');">
+
+      <div class="info-group">
+        <p>NAME: <span id="info-name">NO</span><br/>DEVICE: <span id="info-deviceplatform">?</span><br/>GPS: <span id="info-gps">NO</span><br/>STORIES: <span id="info-audio">0 / 0</span><br/>LOG:<br/><span id="info-log"></span></p>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/mapbox.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+      app.initialize();
+    </script>
+  </body>
+</html>

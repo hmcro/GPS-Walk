@@ -1,0 +1,96 @@
+/**
+ * base styles
+ */
+body, html {
+  height: 100%;
+  background-color: #EA5E3E;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px; }
+
+h1 {
+  font-size: 28px; }
+
+input {
+  width: 280px;
+  height: 40px;
+  margin: 0 auto;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  input[type=submit], input[type=button] {
+    background-color: #C14629;
+    color: #fff; }
+
+/**
+ * custom styles
+ */
+#info-buttons {
+  z-index: 999;
+  position: fixed;
+  top: 15px;
+  right: 15px; }
+  #info-buttons a {
+    display: none; }
+
+.view {
+  display: none;
+  position: absolute; }
+
+#intro-view {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #fff; }
+  #intro-view img {
+    margin-top: 3.3em; }
+  #intro-view input#intro-name {
+    margin-top: 1.4em; }
+  #intro-view input#intro-submit {
+    display: none; }
+
+#loading-view {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 20px;
+  text-align: center; }
+  #loading-view img {
+    margin-top: 3.3em; }
+  #loading-view h1 {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-direction: alternate-reverse;
+    -moz-animation-direction: alternate-reverse;
+    animation-direction: alternate-reverse;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite; }
+  #loading-view #loading-form {
+    margin-top: 1.4em;
+    text-align: center; }
+
+#info-view {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: #fff; }
+  #info-view .info-group {
+    color: #C14629; }
+
+#map {
+  width: 100%;
+  height: 100%; }
+
+@keyframes pulse {
+  0% {
+    opacity: 0.25; }
+  100% {
+    opacity: 1.0; } }
